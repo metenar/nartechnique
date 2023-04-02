@@ -133,3 +133,175 @@ export const services = [
     img: "./img/homesafety.png",
   },
 ];
+export const sliders = [
+  {
+    id: 1,
+    title: "Apliance Installation",
+    img: "./img/applianceins.jpg",
+  },
+  {
+    id: 2,
+    title: "Art Installation",
+    img: "./img/art1.jpg",
+  },
+  {
+    id: 3,
+    title: "Art Installation",
+    img: "./img/artins2.jpg",
+  },
+  {
+    id: 4,
+    title: "Furniture Assembly",
+    img: "./img/autonomusdesk.jpg",
+  },
+  {
+    id: 5,
+    title: "Basketball Hoop Assembly",
+    img: "./img/basketballhoop.jpg",
+  },
+  {
+    id: 6,
+    title: "Blind Installation",
+    img: "./img/blind2.jpg",
+  },
+  {
+    id: 7,
+    title: "Blind Installation",
+    img: "./img/blindins.jpg",
+  },
+  {
+    id: 8,
+    title: "Ceiling Fan Replacement",
+    img: "./img/ceilingfan.jpg",
+  },
+  {
+    id: 9,
+    title: "Cooktop Replacement",
+    img: "./img/cooktop.jpg",
+  },
+  {
+    id: 10,
+    title: "Curtain Rod Replacement",
+    img: "./img/curtonrod.jpg",
+  },
+  {
+    id: 11,
+    title: "Fitness Equipment Installation",
+    img: "./img/eliptic.jpg",
+  },
+  {
+    id: 12,
+    title: "Faucet Replacement",
+    img: "./img/faucet.jpg",
+  },
+  {
+    id: 13,
+    title: "Fitness Equipment Installation",
+    img: "./img/fitnes1.jpg",
+  },
+  {
+    id: 14,
+    title: "Furniture Assembly",
+    img: "./img/furniture.jpg",
+  },
+  {
+    id: 15,
+    title: "Garage Storage Improvment",
+    img: "./img/garage_imp1.jpg",
+  },
+  {
+    id: 16,
+    title: "Garage Storage Improvment",
+    img: "./img/garage_storage.jpg",
+  },
+  {
+    id: 17,
+    title: "Garage Storage Improvment",
+    img: "./img/garagestorage2.jpg",
+  },
+  {
+    id: 18,
+    title: "Glass Board Installation",
+    img: "./img/glassboard.jpg",
+  },
+  {
+    id: 19,
+    title: "Light Fixture Installation",
+    img: "./img/lightfixture.jpg",
+  },
+  {
+    id: 20,
+    title: "Light Fixture Installation",
+    img: "./img/lightfixture2.jpg",
+  },
+  {
+    id: 21,
+    title: "Light Fixture Installation",
+    img: "./img/lightfixture3.jpg",
+  },
+  {
+    id: 22,
+    title: "Microwave Installation",
+    img: "./img/microwave.jpg",
+  },
+  {
+    id: 23,
+    title: "Patio Heater Assembly",
+    img: "./img/patioheater.jpg",
+  },
+  {
+    id: 24,
+    title: "Pet Door Installation",
+    img: "./img/petdoor.jpg",
+  },
+  {
+    id: 25,
+    title: "Rangehood Installation",
+    img: "./img/rangehood.jpg",
+  },
+  {
+    id: 26,
+    title: "Shutters Installation",
+    img: "./img/shutterins.jpg",
+  },
+  {
+    id: 27,
+    title: "Sink Replacement",
+    img: "./img/sinkreplacement.jpg",
+  },
+  {
+    id: 28,
+    title: "TV Mounting",
+    img: "./img/TVins.jpg",
+  },
+  {
+    id: 29,
+    title: "Vanity Installation",
+    img: "./img/vanity_installation.jpg",
+  },
+  {
+    id: 30,
+    title: "Vanity Installation",
+    img: "./img/vanityrep.jpg",
+  },
+  {
+    id: 31,
+    title: "Water Filter Installation",
+    img: "./img/waterFilter.jpg",
+  },
+  {
+    id: 32,
+    title: "Window AC Installation",
+    img: "./img/windowac.jpg",
+  },
+  {
+    id: 33,
+    title: "Window AC Installation",
+    img: "./img/windowac2.jpg",
+  },
+  {
+    id: 34,
+    title: "Wine Cooler Installation",
+    img: "./img/winecooler.jpg",
+  },
+];

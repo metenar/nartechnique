@@ -37,6 +37,7 @@ function Reviews() {
             <script src="https://www.thumbtack.com/profile/widgets/scripts/?service_pk=325208192815775813&widget_id=review&type=star"></script>
           </div>
           <Link
+            target="_blank"
             to="https://www.thumbtack.com/ca/burlingame/furniture-assembly/nar-technique/service/325208192815775813"
             className="link button"
           >

@@ -37,17 +37,20 @@ function Contact() {
               type="text"
               placeholder="Your name"
               value={name}
+              required
               onChange={(event) => setName(event.target.value)}
             />
             <input
               type="email"
               placeholder="Your email"
+              required
               value={email}
               onChange={(event) => setEmail(event.target.value)}
             />
             <textarea
               placeholder="Your message"
               value={message}
+              required
               onChange={(event) => setMessage(event.target.value)}
             />
             <button type="submit">Send</button>

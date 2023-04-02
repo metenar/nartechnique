@@ -45,6 +45,10 @@
           color: white;
           background-color: transparent;
           border-bottom: 2px solid white;
+
+          &::placeholder {
+            color: white;
+          }
         }
         textarea {
           width: 100%;
@@ -55,6 +59,10 @@
           color: white;
           background-color: transparent;
           border-bottom: 2px solid white;
+
+          &::placeholder {
+            color: white;
+          }
         }
         button {
           width: 100%;
