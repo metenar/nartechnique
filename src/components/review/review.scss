@@ -1,0 +1,27 @@
+.review {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .container {
+    width: 900px;
+    border: 1px solid gray;
+    padding: 10px 20px;
+    border-radius: 10px;
+    .customer {
+      font-size: 1rem;
+      font-weight: 400;
+    }
+    .title {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: rgb(168, 162, 162);
+    }
+    .desc {
+      line-height: 1.5rem;
+    }
+    .date {
+      font-size: 0.7rem;
+      font-weight: 400;
+    }
+  }
+}

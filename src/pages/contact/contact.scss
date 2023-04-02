@@ -1,0 +1,76 @@
+.contact {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(44, 42, 42);
+  color: white;
+  padding: 40px;
+  .container {
+    width: 1200px;
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    .leftside {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      gap: 20px;
+
+      .title {
+        font-size: 1.8rem;
+        font-weight: 500;
+      }
+      .address {
+        font-weight: 400;
+      }
+      .email {
+        font-size: 0.9em;
+        color: gray;
+      }
+      .phone {
+        font-size: 0.9rem;
+        color: gray;
+      }
+    }
+    .rightside {
+      form {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+
+        input {
+          padding: 10px;
+          width: 100%;
+          outline: none;
+          border: none;
+          color: white;
+          background-color: transparent;
+          border-bottom: 2px solid white;
+        }
+        textarea {
+          width: 100%;
+          padding: 10px;
+          height: 200px;
+          outline: none;
+          border: none;
+          color: white;
+          background-color: transparent;
+          border-bottom: 2px solid white;
+        }
+        button {
+          width: 100%;
+          padding: 10px;
+          background-color: transparent;
+          color: white;
+          border: 1px solid white;
+          cursor: pointer;
+          border-radius: 5px;
+
+          &:hover {
+            background-color: white;
+            color: black;
+          }
+        }
+      }
+    }
+  }
+}

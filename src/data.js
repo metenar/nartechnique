@@ -1,3 +1,76 @@
+export const reviews = [
+  {
+    id: 1,
+    customer: "MARGOT L.",
+    title: "Handyman",
+    desc: "Worked on some minor electrical and installing shelves into tile. Work was super fast and high quality, I was surprised how quickly it got done. I also appreciated his keen eye for detail in dejecting the right bulbs, fixtures and dimmers. Would definitely hire",
+    date: "Dec 10, 2018",
+  },
+  {
+    id: 2,
+    customer: "MARISSA A",
+    title: "Handyman",
+    desc: "He did our water line for our fridge ice maker, and also installed a ceiling fan for us. He did a great job for a very reasonable price!",
+    date: "Sep 1, 2018",
+  },
+  {
+    id: 3,
+    customer: "FERRIS P.",
+    title: "Sink or Faucet Installation or Replacement",
+    desc: "Mete Nar was amazing ! He was very understanding and accommodating of my busy schedule. He was very respectful of my home and replaced my faucet without incident. The best part is that he thoroughly explained the installation process; making me fully knowledgeable of everything! I highly recommend!",
+    date: "Feb 24, 2023",
+  },
+  {
+    id: 4,
+    customer: "VICKIE D.",
+    title: "Handyman",
+    desc: "Mete was so great! He was extremely responsive, and made sure the job was done right (I had a special request on building some Ikea kitchen cabinets as a fridge surround). Looking forward to future projects with him!",
+    date: "Nov 20, 2018",
+  },
+  {
+    id: 5,
+    customer: "ELIZABETH L.",
+    title: "Art Installation",
+    desc: "Mete helped hang pictures in my apartment and he was very precise. Everything looks AMAZING and would definitely use him again!",
+    date: "Feb 23, 2019",
+  },
+  {
+    id: 6,
+    customer: "LOUISE G.",
+    title: "Window Treatment Installation or Repair",
+    desc: "Mete did a beautiful job installing my shutters. He was prompt, professional, and did a quality job. I will definitely use his services again, Thank you Mete.",
+    date: "Dec 15, 2018",
+  },
+  {
+    id: 7,
+    customer: "NNENNA N.",
+    title: "Sink or Faucet Installation or Replacement",
+    desc: "Mete is an amazing handyman! I can see why he has consistent five stars across the board with his customers. Extremely professional. Very detailed oriented, great problem solver, and very much focused on customer satisfaction. He did a small plumbing job and a major custom, made to measure metal door installation for me. The door was fabricated out of state by a supplier and meant to be installed by the customer. It’s seemed simple enough but it ended up being difficult to install because the measurement was a few millimeters off. Mete worked very patiently to troubleshoot, suggested I reach out to the supplier for a hack, and then was on FaceTime with the supplier’s installer troubleshooting the next day. Given the cost of the doors, I was extremely worried the doors would not work but Mete fixed the problem and made it work and now I have my beautiful metal interior doors. Really enjoyed working with him. Other contractors/handymen would have become unpleasant vs solutions oriented like Mete working with a product they did not know/buy.",
+    date: "Feb 24, 2023",
+  },
+  {
+    id: 8,
+    customer: "MICHELLE T.",
+    title: "Dishwasher Installation",
+    desc: "Mete installed our new dishwasher for us and I would highly recommend him for your project. We live in an older home and Home Depot was unable to complete the installation for us twice. Mete came the morning after I contacted him, immediately figured out the issue, and very patiently answered all of my questions.",
+    date: "Feb 3, 2023",
+  },
+  {
+    id: 9,
+    customer: "ERIC A.",
+    title: "Appliance Installation",
+    desc: "Installed my Midea air conditioner like a pro. Looks good and the work was fast. He was professional the whole time and cleaned up after everything was complete.",
+    date: "Sep 26, 2022",
+  },
+  {
+    id: 10,
+    customer: "KEN W.",
+    title: "Furniture Assembly",
+    desc: "Nar was most responsive and punctual. He performed the assembly of two Ikea computer tables very quickly. His workmanship was excellent. His instructions to us were clear Nar communicated very well. We recommend Nar highly.",
+    date: "Jul 24, 2022",
+  },
+];
+
 export const services = [
   {
     id: 1,
