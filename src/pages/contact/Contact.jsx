@@ -1,26 +1,26 @@
-import { useState } from "react";
-import axios from "axios";
+import { useRef } from "react";
+import emailjs from "@emailjs/browser";
 import "./contact.scss";
 function Contact() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
-
+  const form = useRef();
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios
-      .post("/api/send-email", { name, email, message })
-      .then((response) => {
-        console.log(response.data);
-        alert("Email sent successfully");
-      })
-      .catch((error) => {
-        console.error(error);
-        alert("Error sending email");
-      });
-    setName("");
-    setEmail("");
-    setMessage("");
+    emailjs
+      .sendForm(
+        "service_43s5bts",
+        "template_03iof5o",
+        form.current,
+        "faB5aMcRRzlsNrasm"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+    event.target.reset();
   };
   return (
     <div className="contact">
@@ -32,27 +32,20 @@ function Contact() {
           <span className="phone">Phone: (650) 740-9472</span>
         </div>
         <div className="rightside">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} ref={form}>
             <input
               type="text"
               placeholder="Your name"
-              value={name}
+              name="user_name"
               required
-              onChange={(event) => setName(event.target.value)}
             />
             <input
               type="email"
               placeholder="Your email"
+              name="user_email"
               required
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
             />
-            <textarea
-              placeholder="Your message"
-              value={message}
-              required
-              onChange={(event) => setMessage(event.target.value)}
-            />
+            <textarea placeholder="Your message" name="message" required />
             <button type="submit">Send</button>
           </form>
         </div>
