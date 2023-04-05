@@ -1,28 +1,68 @@
+@import "../../_settings.global.scss";
+
 .navbar {
   display: flex;
   justify-content: center;
-  background-color: rgb(57, 36, 36);
-  color: white;
+  background-color: #ff731d;
+  color: #fff7e9;
   position: sticky;
   top: 0;
-  padding: 20px 0;
+  padding: 10px 0;
   z-index: 999;
   .container {
     width: 1200px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 10px 0;
-
+    @include extra-small {
+      font-size: 0.7em;
+    }
+    @include small-up {
+      font-size: 1em;
+    }
+    @include medium-up {
+      font-size: 1.2em;
+    }
     .logo {
-      font-size: 1.4em;
       font-weight: bold;
       cursor: pointer;
+      .logowraper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
     }
     .links {
+      font-size: 1em;
       display: flex;
       gap: 20px;
       font-weight: 500;
-      cursor: pointer;
+
+      .home_link {
+        cursor: pointer;
+        &:hover {
+          border-bottom: 2px solid #fff7e9;
+        }
+      }
+      .projects {
+        cursor: pointer;
+        &:hover {
+          border-bottom: 2px solid #fff7e9;
+        }
+      }
+      .reviewLink {
+        cursor: pointer;
+        &:hover {
+          border-bottom: 2px solid #fff7e9;
+        }
+      }
+      .contacts {
+        cursor: pointer;
+        &:hover {
+          border-bottom: 2px solid #fff7e9;
+        }
+      }
     }
   }
 }

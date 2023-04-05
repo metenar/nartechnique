@@ -1,40 +1,70 @@
+@import "../../_settings.global.scss";
+
 .home {
   display: flex;
   justify-content: center;
-  background-color: rgb(44, 42, 42);
-  color: rgb(212, 186, 138);
+  background-color: #1746a2;
+  color: #fff7e9;
   .container {
     width: 1200px;
     padding: 10px 10px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 20px;
     margin-top: 20px;
 
     .about {
-      width: 100%;
+      @include small-down {
+        width: $sm;
+      }
+      @include medium-up {
+        width: 100%;
+      }
       display: flex;
       flex-direction: column;
+      justify-content: center;
       align-items: center;
       gap: 20px;
 
       .title {
-        font-size: 3em;
-        font-weight: 500;
+        text-align: center;
+        @include small-up {
+          font-size: 1em;
+          font-weight: 400;
+        }
+        @include medium-up {
+          font-size: 3em;
+          font-weight: 500;
+        }
       }
       .desc {
-        text-align: left;
+        text-align: justify;
         line-height: 1.5rem;
       }
       .about_img {
-        margin-top: 20px;
-        width: 100%;
-        height: 500px;
+        @include small-down {
+          display: none;
+        }
+        @include medium-up {
+          display: block;
+          width: 100%;
+          margin-top: 20px;
+          width: 100%;
+          height: 500px;
+        }
       }
     }
     .bottom {
       .bottom_img {
-        width: 100%;
+        @include small-down {
+          display: none;
+        }
+        @include medium-up {
+          display: block;
+          width: 100%;
+        }
       }
     }
   }

@@ -27,7 +27,7 @@ function Contact() {
       <div className="container">
         <div className="leftside">
           <h2 className="title">Contact us for quotes or any questions</h2>
-          <h4 className="address">Morrell Ave Burlingame,CA 94010</h4>
+          <h4 className="address">Burlingame,CA 94010</h4>
           <span className="email">metenar@gmail.com</span>
           <span className="phone">Phone: (650) 740-9472</span>
         </div>

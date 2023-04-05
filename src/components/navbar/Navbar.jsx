@@ -7,7 +7,10 @@ function Navbar() {
       <div className="container">
         <div className="logo">
           <Link to="/" className="link">
-            <span>NarTechnique</span>
+            <div className="logowraper">
+              <span>Nar</span>
+              <span>Technique</span>
+            </div>
           </Link>
         </div>
         <div className="links">

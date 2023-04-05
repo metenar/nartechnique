@@ -69,6 +69,34 @@ export const reviews = [
     desc: "Nar was most responsive and punctual. He performed the assembly of two Ikea computer tables very quickly. His workmanship was excellent. His instructions to us were clear Nar communicated very well. We recommend Nar highly.",
     date: "Jul 24, 2022",
   },
+  {
+    id: 11,
+    customer: "Jonathan j.",
+    title: "Appliance Installation",
+    desc: "Mete did a great job installing 3 of our appliances (range, hood ventilation including new duct, and our sink + faucet). He was knowledgeable of all the appliances he had to install including our Bluestar Platinum range which was more complex to install. We had unexpected issues along the way including redoing old existing piping for our gas & drain lines and Mete went out of his away to resolve all the issues to get them installed properly and on time! Would 100% recommend him.",
+    date: "Aug 16, 2022",
+  },
+  {
+    id: 12,
+    customer: "Tom D.",
+    title: "Appliance Installation",
+    desc: "Mete did an excellent job installing my Bosch dishwasher. He showed up on time and knew exactly what to do. He explained why the leak I was seeing under my sink was not a big problem and would be fixed with the installation. He was careful in his work, making sure the appliance was flush with the countertop and he took the time after he installed it to explain the different settings for the washer.",
+    date: "Aug 15, 2022",
+  },
+  {
+    id: 13,
+    customer: "Rhesa N.",
+    title: "Sink Replacement",
+    desc: "We need a new kitchen sink and faucet installed. Mete came on time, very professional, and courteous. The new sink did not fit into the existing hole in the granite. Mete took the time to explain things and come with me to home depot to get one that fits. The installation was done efficiently and he was able to make it work with the existing constraints of the granite and cabinet. The end result is clean and neat! Very pleased with the work. Thank you, Mete!!",
+    date: "Jan 2, 2023",
+  },
+  {
+    id: 14,
+    customer: "Shah H.",
+    title: "Kitchen Improvement",
+    desc: "Mete, did a great quality job installing our cooktop, water filter, and faucet installation. He solved problems as they usually pop up with these kinds of work. He also provided parts from his own inventory wherever needed. Will work with Mete in the future.",
+    date: "Nov 14, 2022",
+  },
 ];
 
 export const services = [
@@ -131,6 +159,12 @@ export const services = [
     title: "HOME SAFETY",
     desc: "Protect your home and family with our expert home safety improvement services. Our offerings include installing smoke and noxious gas detectors, earthquake proofing, water heater strapping, and child-proofing to ensure a safe and secure living environment. Contact us today to schedule a consultation and enhance your home's safety and security.",
     img: "./img/homesafety.png",
+  },
+  {
+    id: 11,
+    title: "WATER HEATER REPLACEMENT",
+    desc: "Upgrade your home's hot water supply with our expert water heater replacement services. Our team of professionals can replace your old and inefficient water heater with a new, energy-efficient model that meets your household's hot water demands. Contact us today to schedule a consultation and enhance your home's hot water supply.",
+    img: "./img/waterheater.jpeg",
   },
 ];
 export const sliders = [

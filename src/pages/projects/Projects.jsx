@@ -4,6 +4,16 @@ import { sliders } from "../../data";
 import "./projects.scss";
 
 function Projects() {
+  let showOption;
+  if (window.innerWidth >= 1200) {
+    showOption = 4;
+  } else if (window.innerWidth >= 900 && window.innerWidth < 1200) {
+    showOption = 3;
+  } else if (window.innerWidth >= 650 && window.innerWidth < 900) {
+    showOption = 2;
+  } else {
+    showOption = 1;
+  }
   return (
     <div className="projects1">
       <img src="./img/projects_base.png" alt="" />
@@ -21,7 +31,7 @@ function Projects() {
         </div>
         <div className="bottom">
           <h3 className="bottom_title">Some of my works</h3>
-          <Slide slidesToShow={4} arrowsScroll={4}>
+          <Slide slidesToShow={showOption} arrowsScroll={showOption}>
             {sliders.map((item) => (
               <Project item={item} key={item.id} />
             ))}
