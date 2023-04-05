@@ -5,13 +5,18 @@
   color: #fff7e9;
 
   .container {
-    @include small-down {
-      width: $sm;
-    }
-    @include medium-up {
-      width: 100%;
-    }
-    // width: 1200px;
+    // @include responsive($sm) {
+    //   width: $xs;
+    // }
+    // @include responsive($med) {
+    //   width: $med;
+    // }
+    // @include responsive($lg) {
+    //   width: $lg;
+    // }
+    // @include responsive($xl) {
+    //   width: $xl;
+    // }
     display: flex;
     flex-direction: column;
     @include xlarge {
@@ -46,14 +51,16 @@
         flex: 1;
       }
       .image {
-        @include responsive($sm) {
-          width: 100%;
-          height: 500px;
-        }
-        @include medium-up {
-          width: 100%;
-          height: 500px;
-        }
+        width: 100%;
+        height: 500px;
+        // @include responsive($sm) {
+        //   width: 100%;
+        //   height: 500px;
+        // }
+        // @include medium-up {
+        //   width: 100%;
+        //   height: 500px;
+        // }
         border-radius: 5px;
         object-fit: cover;
       }

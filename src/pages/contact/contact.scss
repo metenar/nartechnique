@@ -10,12 +10,13 @@
   .container {
     width: 1200px;
     display: flex;
-    @include small-up {
-      // width: $xs;
+    @include responsive($xs) {
       flex-direction: column;
     }
-    @include medium-up {
-      // width: $xs;
+    @include responsive($sm) {
+      flex-direction: column;
+    }
+    @include responsive($med) {
       flex-direction: row;
     }
     gap: 20px;
@@ -28,8 +29,8 @@
       gap: 20px;
 
       .title {
+        text-align: center;
         @include small-up {
-          text-align: center;
           font-size: 1em;
           font-weight: 400;
         }

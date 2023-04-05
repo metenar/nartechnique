@@ -6,7 +6,22 @@
   background-color: #1746a2;
   color: #fff7e9;
   .container {
-    width: 1200px;
+    @include responsive($xs) {
+      width: $xs;
+    }
+    @include responsive($sm) {
+      width: $sm;
+    }
+    @include responsive($med) {
+      width: $med;
+    }
+    @include responsive($lg) {
+      width: $lg;
+    }
+    @include responsive($xl) {
+      width: $xl;
+    }
+    // width: 1200px;
     padding: 10px 10px;
     display: flex;
     flex-direction: column;
@@ -16,12 +31,7 @@
     margin-top: 20px;
 
     .about {
-      @include small-down {
-        width: $sm;
-      }
-      @include medium-up {
-        width: 100%;
-      }
+      width: 100%;
       display: flex;
       flex-direction: column;
       justify-content: center;

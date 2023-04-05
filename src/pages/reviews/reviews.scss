@@ -7,8 +7,11 @@
   color: #fff7e9;
   padding: 20px 0;
   .container {
-    @include responsive($sm) {
+    @include responsive($xs) {
       width: $xs;
+    }
+    @include responsive($sm) {
+      width: $sm;
     }
     @include responsive($med) {
       width: $med;
@@ -37,6 +40,9 @@
         font-size: 2rem;
       }
       .widget {
+        @include responsive($xs) {
+          display: none;
+        }
         @include responsive($sm) {
           display: none;
         }
