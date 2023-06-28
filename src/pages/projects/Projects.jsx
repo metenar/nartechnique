@@ -30,7 +30,7 @@ function Projects() {
           </p>
         </div>
         <div className="bottom">
-          <h3 className="bottom_title">Some of my works</h3>
+          <h3 className="bottom_title">Some of my work</h3>
           <Slide slidesToShow={showOption} arrowsScroll={showOption}>
             {sliders.map((item) => (
               <Project item={item} key={item.id} />

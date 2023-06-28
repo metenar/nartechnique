@@ -5,7 +5,7 @@ function Slide({ children, slidesToShow, arrowsScroll }) {
   return (
     <div className="slide">
       <div className="container">
-        <Slider dots slidesToShow={slidesToShow} arrowsScroll={arrowsScroll}>
+        <Slider slidesToShow={slidesToShow} arrowsScroll={arrowsScroll}>
           {children}
         </Slider>
       </div>
