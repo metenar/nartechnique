@@ -3,14 +3,14 @@ $lg: 60em; // 1080 and hi-res laptops
 $med: 40em; // hi-res tablets and low-res laptops
 $sm: 28em; // mobile and low-res tablets
 $xs: 20em; // mobile only
-
+$extra-small: 380px;
 $small-width: 480px;
 $medium-width: 768px;
 $large-width: 1024px;
 $xlarge-width: 1200px;
 
 @mixin extra-small {
-  @media (max-width: #{$small-width - 1px}) {
+  @media (max-width: #{$extra-small - 1px}) {
     @content;
   }
 }
