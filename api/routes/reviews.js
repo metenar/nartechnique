@@ -7,13 +7,14 @@ import {
   createReview,
   countReviews,
 } from "../controllers/reviewController.js";
+import { verifyAdmin } from "../utils/verifyToken.js";
 const router = express.Router();
 // Create
-router.post("/", createReview);
+router.post("/", verifyAdmin, createReview);
 // Delete
-router.delete("/:id", deleteReview);
+router.delete("/:id", verifyAdmin, deleteReview);
 // Update
-router.put("/:id", updateReviewById);
+router.put("/:id", verifyAdmin, updateReviewById);
 // Get One
 router.get("/find/:id", getReviewById);
 // Get All

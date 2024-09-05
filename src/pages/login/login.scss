@@ -1,0 +1,65 @@
+@import "../../_settings.global.scss";
+.Login {
+  height: calc(100vh - 50px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url("https://images.pexels.com/photos/768473/pexels-photo-768473.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
+  background-size: cover;
+  //   margin-top: 100px;
+  .LoginTitle {
+    font-size: 50px;
+    font-family: "Varela Round", sans-serif;
+  }
+  .LoginForm {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    label {
+      margin: 10px 0;
+    }
+    input {
+      padding: 10px;
+      background-color: white;
+      border: none;
+      font-size: 1em;
+      border-radius: 10px;
+    }
+    .LoginButton {
+      margin-top: 20px;
+      background-color: coral;
+      color: white;
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 1em;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      &:disabled {
+        background-color: #bed9d8;
+        cursor: not-allowed;
+      }
+    }
+  }
+  span {
+    color: rgba(255, 0, 0, 0.59);
+  }
+  .LoginRegisterButton {
+    position: absolute;
+    top: 160px;
+    right: 120px;
+    background-color: green;
+    color: white;
+    padding: 10px;
+    font-size: 1em;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+}

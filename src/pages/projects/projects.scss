@@ -1,6 +1,8 @@
 @import "../../_settings.global.scss";
 
 .projects1 {
+  width: 100%;
+  // height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -8,10 +10,12 @@
   background-color: #1746a2;
   gap: 50px;
   color: #fff7e9;
+  // overflow-y: scroll;
   img {
     width: 100%;
   }
   .container {
+    // height: 100%;
     @include responsive($sm) {
       width: $xs;
     }
@@ -26,10 +30,12 @@
     }
     // width: 1200px;
     display: flex;
+
     flex-direction: column;
     padding: 0 20px;
     gap: 40px;
     .top {
+      // height: 100%;
       display: flex;
       flex-direction: column;
       gap: 20px;
@@ -47,6 +53,7 @@
       }
     }
     .bottom {
+      // height: 100%;
       margin-top: 50px;
       display: flex;
       flex-direction: column;

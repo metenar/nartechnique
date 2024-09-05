@@ -1,0 +1,62 @@
+.newReview {
+  color: white;
+  height: 100%;
+
+  //   display: flex;
+
+  background-color: #1746a2;
+  .formContainer {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // padding: 10px;
+
+    h2 {
+      color: white;
+      text-align: center;
+    }
+    .wrapper {
+      padding: 10px;
+      margin-top: 30px;
+      border: 1px solid gray;
+      width: 40%;
+
+      form {
+        display: flex;
+        flex-direction: column;
+        // justify-content: space-between;
+        // gap: 20px;
+        align-items: center;
+        .item {
+          width: 90%;
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+          padding: 0 30px;
+          margin-bottom: 10px;
+          label {
+            font-size: 12px;
+          }
+          input {
+            padding: 10px;
+            background-color: rgb(150, 148, 148);
+            border-radius: 5px;
+            border: 1px solid gray;
+            outline: none;
+          }
+        }
+        .sendButton {
+          width: 30%;
+          border-radius: 5px;
+          border: none;
+          padding: 10px;
+          background-color: #ff731d;
+          color: white;
+          font-weight: bold;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

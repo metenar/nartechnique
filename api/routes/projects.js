@@ -6,13 +6,14 @@ import {
   deleteProject,
   createProject,
 } from "../controllers/projectController.js";
+import { verifyAdmin } from "../utils/verifyToken.js";
 const router = express.Router();
 // Create
-router.post("/", createProject);
+router.post("/", verifyAdmin, createProject);
 // Delete
-router.delete("/:id", deleteProject);
+router.delete("/:id", verifyAdmin, deleteProject);
 // Update
-router.put("/:id", updateProjectById);
+router.put("/:id", verifyAdmin, updateProjectById);
 // GetOne
 router.get("/find/:id", getProjectById);
 // GetAllProject

@@ -19,9 +19,10 @@ function Home() {
             handle any task, big or small. From electrical and plumbing work to
             and painting, we've got you covered. At Nar Technique Handyman
             Services, we pride ourselves on delivering exceptional customer
-            service and exceeding your expectations. Contact us today to learn
-            more about our services and how we can help you with your next
-            project.
+            service and exceeding your expectations. According Thumbtack
+            Professional List Nar Technique selected 6 years Top Pro (2018,
+            2019, 2020, 2022, 2023, 2024) Contact us today to learn more about
+            our services and how we can help you with your next project.
             <img
               src="./img/Screen Shot 2023-04-01 at 3.25.25 PM.png"
               alt=""
