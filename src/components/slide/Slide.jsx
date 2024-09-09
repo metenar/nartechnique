@@ -3,7 +3,7 @@ import Carousel from "infinite-react-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 // import { Carousel } from "react-responsive-carousel";
 
-function Slide({ children, slidesToShow, arrowsScroll }) {
+function Slide({ children }) {
   const options = {
     autoPlayInterval: 1000,
     arrows: true,
