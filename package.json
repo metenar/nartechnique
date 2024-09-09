@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && cd api && npm install",
+    "build": "cd api && npm install && cd .. && vite build",
     "client": "cd api && yarn start",
     "start": "concurrently \"vite\" \"yarn client\"",
     "preview": "vite preview"
