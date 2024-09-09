@@ -5,38 +5,38 @@ import { sliders } from "../../data";
 import "./projects.scss";
 
 function Projects() {
-  const [windowSize, setWindowSize] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight,
-  });
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-    };
+  // const [windowSize, setWindowSize] = useState({
+  //   width: window.innerWidth,
+  //   height: window.innerHeight,
+  // });
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     setWindowSize({
+  //       width: window.innerWidth,
+  //       height: window.innerHeight,
+  //     });
+  //   };
 
-    // Add event listener
-    window.addEventListener("resize", handleResize);
+  //   // Add event listener
+  //   window.addEventListener("resize", handleResize);
 
-    // Remove event listener on component unmount
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  //   // Remove event listener on component unmount
+  //   return () => {
+  //     window.removeEventListener("resize", handleResize);
+  //   };
+  // }, []);
 
-  let showOption;
-  if (windowSize.width >= 1200) {
-    showOption = 30;
-  } else if (windowSize.width >= 900 && windowSize.width < 1200) {
-    showOption = 40;
-  } else if (windowSize.width >= 650 && windowSize.width < 900) {
-    showOption = 50;
-  } else {
-    showOption = 100;
-  }
-  console.log(showOption);
+  // let showOption;
+  // if (windowSize.width >= 1200) {
+  //   showOption = 30;
+  // } else if (windowSize.width >= 900 && windowSize.width < 1200) {
+  //   showOption = 40;
+  // } else if (windowSize.width >= 650 && windowSize.width < 900) {
+  //   showOption = 50;
+  // } else {
+  //   showOption = 100;
+  // }
+  // console.log(showOption);
   return (
     <div className="projects1">
       <img src="./img/projects_base.png" alt="" />
@@ -54,7 +54,7 @@ function Projects() {
         </div>
         <div className="bottom">
           <h3 className="bottom_title">Some of my work</h3>
-          <Slide slidesToShow={showOption} arrowsScroll={showOption}>
+          <Slide>
             {sliders.map((item) => (
               <Project item={item} key={item.id} />
             ))}
