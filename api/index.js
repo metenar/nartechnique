@@ -33,7 +33,7 @@ app.use("/auth", authRoute);
 
 app.use(express.static(path.join(__dirname, "../")));
 
-app.get("*", req, (res) => {
+app.get("*", (req, res) => {
   res.send(path.join(__dirname, "../", "index.html"));
 });
 app.listen(PORT, () => {
