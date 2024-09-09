@@ -31,10 +31,10 @@ app.use("/projects", projectsRoute);
 app.use("/users", usersRoute);
 app.use("/auth", authRoute);
 
-app.use(express.static(path.join(__dirname, "../")));
+app.use(express.static(path.join(__dirname, "../dist")));
 
 app.get("*", (req, res) => {
-  res.send(path.join(__dirname, "../", "index.html"));
+  res.send(path.join(__dirname, "../dist", "index.html"));
 });
 app.listen(PORT, () => {
   connect();
