@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "cd api && npm install && cd .. && vite build",
     "client": "cd api && yarn start",
-    "start": "concurrently \"vite\" \"yarn client\"",
+    "start": "cd api && yarn start",
     "preview": "vite preview"
   },
   "dependencies": {
