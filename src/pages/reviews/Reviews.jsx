@@ -4,10 +4,11 @@ import "./reviews.scss";
 import { useState } from "react";
 import Pagination from "../../components/pagination/Pagination";
 function Reviews() {
+  console.log("Reviews sayfasina geldik");
   const reviews = useLoaderData();
+  console.log(reviews);
   const [currentPage, setCurrentPage] = useState(1); // Mevcut sayfa numarası
   const [reviewsPerPage] = useState(10); // Sayfa başına gösterilecek yorum sayısı
-
   // Şu anki sayfa için yorumları hesapla
   const indexOfLastReview = currentPage * reviewsPerPage;
   const indexOfFirstReview = indexOfLastReview - reviewsPerPage;
