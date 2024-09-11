@@ -6,7 +6,6 @@ import Pagination from "../../components/pagination/Pagination";
 function Reviews() {
   console.log("Reviews sayfasina geldik");
   const reviews = useLoaderData();
-  console.log(reviews);
   const [currentPage, setCurrentPage] = useState(1); // Mevcut sayfa numarası
   const [reviewsPerPage] = useState(10); // Sayfa başına gösterilecek yorum sayısı
   // Şu anki sayfa için yorumları hesapla
@@ -57,7 +56,7 @@ function Reviews() {
         </div>
         <div className="bottom">
           {currentReviews.map((review) => (
-            <Review review={review} />
+            <Review review={review} key={review.id} />
           ))}
           <Pagination
             reviewsPerPage={reviewsPerPage}
