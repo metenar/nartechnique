@@ -26,6 +26,13 @@ const connect = async () => {
 app.use(express.json());
 app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 app.use(cookieParser());
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", process.env.CLIENT_URL);
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  next();
+});
+
 app.use("/reviews", reviewsRoute);
 app.use("/projects", projectsRoute);
 app.use("/users", usersRoute);
