@@ -10,7 +10,7 @@ function NewReview() {
     const formData = new FormData(e.target);
     const inputs = Object.fromEntries(formData);
     try {
-      const res = await apiRequest.post("/reviews", {
+      await apiRequest.post("/reviews", {
         user: inputs.customer,
         star: inputs.star,
         work: inputs.type,
