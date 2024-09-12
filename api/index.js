@@ -34,6 +34,13 @@ app.use((req, res, next) => {
 
   next();
 });
+app.options("*", (req, res) => {
+  res.header("Access-Control-Allow-Origin", "https://www.nartechnique.com");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.header("Access-Control-Allow-Credentials", true);
+  res.sendStatus(204);
+});
 
 app.use("/reviews", reviewsRoute);
 app.use("/projects", projectsRoute);
