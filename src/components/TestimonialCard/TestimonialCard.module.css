@@ -1,0 +1,41 @@
+.card {
+  background: var(--color-background);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.stars {
+  color: var(--color-warning);
+  font-size: 1.25rem;
+  letter-spacing: 2px;
+}
+
+.text {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  font-style: italic;
+  flex-grow: 1;
+}
+
+.authorInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  border-top: 1px solid var(--color-border);
+  padding-top: 1rem;
+}
+
+.name {
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.service {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}

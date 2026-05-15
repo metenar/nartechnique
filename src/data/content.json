@@ -1,0 +1,44 @@
+{
+  "gallery": [
+    {
+      "id": "1",
+      "src": "/clean_tv_mount.png",
+      "alt": "Clean TV Mounting"
+    },
+    {
+      "id": "2",
+      "src": "/modern_faucet_install.png",
+      "alt": "Modern Faucet Installation"
+    }
+  ],
+  "reviews": [
+    {
+      "id": "1",
+      "name": "Sarah J.",
+      "service": "TV Mounting & Lighting",
+      "text": "Incredibly professional and clean. They mounted two TVs and installed a dining room chandelier in just a few hours. No mess left behind!",
+      "rating": 5
+    },
+    {
+      "id": "2",
+      "name": "Michael T.",
+      "service": "Faucet Replacement",
+      "text": "Responsive communication, showed up exactly on time, and the new bathroom faucet looks perfect. Will definitely call Nar Technique again.",
+      "rating": 5
+    },
+    {
+      "id": "3",
+      "name": "David W.",
+      "service": "Furniture Assembly",
+      "text": "Saved me an entire weekend of frustration. They assembled a massive wardrobe perfectly and were very respectful of my apartment.",
+      "rating": 5
+    },
+    {
+      "id": "1778545077940",
+      "name": "Sarah N.",
+      "service": "Appliance Installation Washer/Dryer",
+      "text": "Mete did a thorough job in helping us install our dryer after our move in. He went about his job & great advice for our other appliances.",
+      "rating": 5
+    }
+  ]
+}
