@@ -11,14 +11,8 @@
 }
 
 .logo {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--color-primary);
-  letter-spacing: -0.5px;
-}
-
-.logoAccent {
-  color: var(--color-secondary);
+  display: flex;
+  align-items: center;
 }
 
 .navLinks {

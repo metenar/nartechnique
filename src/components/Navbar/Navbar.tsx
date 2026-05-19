@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Button } from '../Button/Button';
 import styles from './Navbar.module.css';
 
@@ -11,7 +12,13 @@ export const Navbar = () => {
   return (
     <header className={styles.navbar}>
       <Link href="/" className={styles.logo}>
-        Nar <span className={styles.logoAccent}>Technique</span>
+        <Image 
+          src="/logo.svg" 
+          alt="Nar Technique Logo" 
+          width={150} 
+          height={40} 
+          priority
+        />
       </Link>
 
       <nav className={`${styles.navLinks} ${isMenuOpen ? styles.active : ''}`}>
