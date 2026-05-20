@@ -10,6 +10,13 @@ export const Footer = () => {
           <h3>Nar Technique</h3>
           <p>Professional, reliable, and clean handyman and installation services in the Bay Area.</p>
           <p><strong>Call or Text:</strong><br/><a href="tel:6507409472">(650) 740-9472</a></p>
+          <div className={styles.socialLinks}>
+            <a href="https://facebook.com/nartechnique" target="_blank" rel="noopener noreferrer">Facebook</a>
+            <a href="https://instagram.com/nartechnique" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://linkedin.com/company/nartechnique" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://youtube.com/@nartechnique" target="_blank" rel="noopener noreferrer">YouTube</a>
+            <a href="https://x.com/nartechnique" target="_blank" rel="noopener noreferrer">X</a>
+          </div>
         </div>
         
         <div className={styles.column}>

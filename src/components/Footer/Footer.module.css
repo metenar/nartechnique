@@ -25,6 +25,23 @@
   margin-bottom: 1rem;
 }
 
+.socialLinks {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.socialLinks a {
+  color: #a0a0a0;
+  font-size: 0.9rem;
+  transition: color var(--transition-fast);
+}
+
+.socialLinks a:hover {
+  color: var(--color-secondary-light);
+}
+
 .links {
   list-style: none;
   display: flex;
