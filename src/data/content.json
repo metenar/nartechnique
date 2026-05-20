@@ -9,6 +9,61 @@
       "id": "2",
       "src": "/modern_faucet_install.png",
       "alt": "Modern Faucet Installation"
+    },
+    {
+      "id": "1779233525787",
+      "src": "/1779233525651-windowac2.jpg",
+      "alt": "Window AC installation"
+    },
+    {
+      "id": "1779233572318",
+      "src": "/1779233572305-vanity_installation.jpg",
+      "alt": "Vanity Replacement"
+    },
+    {
+      "id": "1779233596060",
+      "src": "/1779233596046-rangehood.jpg",
+      "alt": "Rangehood replacement"
+    },
+    {
+      "id": "1779233647612",
+      "src": "/1779233647595-lightfixture3.jpg",
+      "alt": "Light Fixturw Install"
+    },
+    {
+      "id": "1779233673863",
+      "src": "/1779233673848-garagestorage2.jpg",
+      "alt": "Garage Storage Install"
+    },
+    {
+      "id": "1779233689937",
+      "src": "/1779233689924-winecooler.jpg",
+      "alt": "Appliance Install"
+    },
+    {
+      "id": "1779233717879",
+      "src": "/1779233717863-ceilingfan.jpg",
+      "alt": "Ceiling Fan Install"
+    },
+    {
+      "id": "1779233740177",
+      "src": "/1779233740164-artins2.jpg",
+      "alt": "Art Install"
+    },
+    {
+      "id": "1779234159643",
+      "src": "/1779234159631-basketballhoop.jpg",
+      "alt": "Basketball Hoop Install"
+    },
+    {
+      "id": "1779234200224",
+      "src": "/1779234200209-faucet.jpg",
+      "alt": "Faucet Replacement"
+    },
+    {
+      "id": "1779234281585",
+      "src": "/1779234281570-blindins.jpg",
+      "alt": "Blind Install"
     }
   ],
   "reviews": [
@@ -38,6 +93,83 @@
       "name": "Sarah N.",
       "service": "Appliance Installation Washer/Dryer",
       "text": "Mete did a thorough job in helping us install our dryer after our move in. He went about his job & great advice for our other appliances.",
+      "rating": 5
+    },
+    {
+      "id": "1779308150539",
+      "name": "Chirag M.",
+      "service": "Water Treatment System Installation or Replacement",
+      "text": "We hired Mete to install a water filter in our kitchen. Mete quoted a fair price and was very responsive with the scheduling. He completed the installation in a couple of hours and was very thorough and neat in his job. I would definitely recommend Mete for any plumbing or electrical-related work in the house.",
+      "rating": 5
+    },
+    {
+      "id": "1779308252036",
+      "name": "Meg B.",
+      "service": "Window AC Installation",
+      "text": "Mete was extremely responsive and was able to get my project done incredibly quickly. He was thorough in his installation of multiple in-window A/C units and gave me a great rundown of what he had done and how the units function. His installation was also very efficient! Highly recommend and will definitely hire him again.",
+      "rating": 5
+    },
+    {
+      "id": "1779308366277",
+      "name": "Lizzie P.",
+      "service": "Appliance Installation",
+      "text": "I was a little leery about getting someone to install my brand new dishwasher that Home Depot refused to install, saying my layout is difficult. It was no problem with Mete, and he seems very knowledgeable about dishwashers, even my two-drawer style dishwasher. Another thing I really appreciate about him was that he was very clean, both he and the area he had worked on.\n\nThank you for getting me all set up!",
+      "rating": 5
+    },
+    {
+      "id": "1779308538734",
+      "name": "Valerie R.",
+      "service": "Dishwasher Installation",
+      "text": "We had a tricky situation with our dishwasher installation. Our old dishwasher leaked, and so we got a new one and needed someone to put it in. This guy was able to understand completely why the old one had leaked in the first place and knew exactly what to do to install this one correctly. The job was done with ease and professionalism, and he took the time to explain it all to us very kindly. Highly recommend. And would definitely hire him again!",
+      "rating": 5
+    },
+    {
+      "id": "1779308628168",
+      "name": "Edith M.",
+      "service": "Appliance Installation",
+      "text": "I hired Nar Technique to install a kitchen hood ventilation system in my home, and I couldn’t be more pleased with the results. They arrived right on time and were extremely professional. They took the time to explain the entire installation process and answered all my questions with patience. The installation was completed flawlessly, and the ventilation system works. They were also very careful not to damage any surfaces and cleaned up thoroughly after they finished. The whole process was completed faster than expected, which was a nice bonus. I am extremely satisfied and highly recommend Nar to anyone needing hood ventilation installation or any appliance installation. I will definitely be using them again in the future",
+      "rating": 5
+    },
+    {
+      "id": "1779308700851",
+      "name": "Alicia D.",
+      "service": "Sink or Faucet Installation or Replacement",
+      "text": "Nar is great to work with! He is super responsive, and he did a great job with my plumbing needs (changing a shower cartridge and replacing broken faucets). I would highly recommend him to anyone, as he seems to be capable of tackling almost any project. He’s that good! Professional, kind, and offers a superb value.",
+      "rating": 5
+    },
+    {
+      "id": "1779308777066",
+      "name": "Cecilia S.",
+      "service": "Garbage Disposal Installation",
+      "text": "Mete was thorough in explaining what he was about to do with regard to replacing my kitchen garbage disposal. He updated me on issues he saw during and after the installation process. He cleaned the pipes to ensure water flows and recommended they be replaced eventually to avoid corrosion and other problems in the future. I was very happy with the result and would call him again for future handyman work.",
+      "rating": 5
+    },
+    {
+      "id": "1779308929955",
+      "name": "James B.",
+      "service": "Appliance Installation",
+      "text": "Mete was excellent. Our oven install was challenging due to the difficult gas routing. We encountered multiple roadblocks, but Mete was able to get to a final nice, clean solution.\n\nMete also explained every step of the process, such that I 100% understood what work was done and why it was done that way.\n\nHighly recommend Mete for all handyman work.",
+      "rating": 5
+    },
+    {
+      "id": "1779308978825",
+      "name": "Sowjanya k.",
+      "service": "Garbage Disposal Installation",
+      "text": "This man knows what he's doing, offering various solutions to minimize expenses. He efficiently handled our garbage disposal and air gap installation, delivering exceptional results. Additionally, he provided valuable advice on potential future repairs at no extra cost.",
+      "rating": 5
+    },
+    {
+      "id": "1779309147728",
+      "name": "Heaven W.",
+      "service": "Sink or Faucet Installation or Replacement",
+      "text": "I cannot give enough accolades to Nar Technique. He replaced my kitchen sink and provided me with a detailed description of what the work would entail before he started. He did an amazing job replacing the sink with care. A week later, my garbage disposal started to leak, and Nar returned without hesitation to replace it, ensuring the sink replacement was complete. Not only is Nar skilled, but he is also extremely kind. I will reach out to Nar Technique to help with my next project. I highly recommend Nar Technique!",
+      "rating": 5
+    },
+    {
+      "id": "1779309247297",
+      "name": "Nnenna N.",
+      "service": "Sink or Faucet Installation or Replacement",
+      "text": "Mete is an amazing handyman! I can see why he has consistent five stars across the board with his customers. Extremely professional. Very detail-oriented, great problem solver, and very focused on customer satisfaction. He did a small plumbing job and a major custom, made-to-measure metal door installation for me. The door was fabricated out of state by a supplier and meant to be installed by the customer. It seemed simple enough, but it ended up being difficult to install because the measurement was a few millimeters off. Mete worked very patiently to troubleshoot, suggested I reach out to the supplier for a hack, and then was on FaceTime with the supplier’s installer, troubleshooting the next day. Given the cost of the doors, I was extremely worried the doors would not work, but Mete fixed the problem and made them work, and now I have my beautiful metal interior doors. Really enjoyed working with him. Other contractors/handymen would have become unpleasant vs solutions-oriented like Mete, working with a product they did not know/buy.",
       "rating": 5
     }
   ]

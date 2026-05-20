@@ -41,6 +41,7 @@ export const Footer = () => {
             <li><Link href="/services/art-installation-san-mateo">Art & Mirrors</Link></li>
             <li><Link href="/services/smart-home-installation-san-mateo">Smart Home</Link></li>
             <li><Link href="/services/water-treatment-installation-san-mateo">Water Systems</Link></li>
+            <li><Link href="/services/window-ac-installation-san-mateo">AC Installation</Link></li>
           </ul>
         </div>
       </div>

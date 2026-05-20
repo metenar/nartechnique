@@ -11,13 +11,14 @@ export const Navbar = () => {
 
   return (
     <header className={styles.navbar}>
-      <Link href="/" className={styles.logo}>
-        <Image 
-          src="/logo.svg" 
-          alt="Nar Technique Logo" 
-          width={150} 
-          height={40} 
+      <Link href="/" className={styles.logoWrapper}>
+        <Image
+          src="/logo.svg"
+          alt="Nar Technique Logo"
+          width={600}
+          height={200}
           priority
+          className={styles.logoImage}
         />
       </Link>
 
@@ -28,7 +29,7 @@ export const Navbar = () => {
         <Button href="tel:6507409472" variant="primary">Call: (650) 740-9472</Button>
       </nav>
 
-      <button 
+      <button
         className={styles.mobileMenuBtn}
         onClick={() => setIsMenuOpen(!isMenuOpen)}
         aria-label="Toggle menu"

@@ -94,6 +94,15 @@ const servicePages: Record<string, { title: string, description: string, content
       { q: 'Do you install Reverse Osmosis (RO) systems?', a: 'Yes, we professionally install under-sink RO systems, including safely drilling holes in countertops for the dedicated drinking water faucet if necessary.' },
       { q: 'Can you replace my old water filter system?', a: 'Absolutely. We can cleanly remove your old system, dispose of it, and install a brand new modern water treatment system.' }
     ]
+  },
+  'window-ac-installation-san-mateo': {
+    title: 'Window / Portable AC Installation in San Mateo',
+    description: 'Professional window and portable air conditioning installation services in San Mateo and the Bay Area. Secure, properly sealed, and efficient cooling setup.',
+    content: 'Stay cool during the summer heat with our professional window and portable air conditioning installation services. Installing an AC unit correctly is crucial for both efficiency and safety. We ensure your window unit is securely mounted, perfectly leveled for proper drainage, and tightly sealed to prevent drafts and bugs. For portable units, we correctly vent the exhaust securely through your window.',
+    faqs: [
+      { q: 'Do you provide the AC unit?', a: 'No, you provide the unit, and we handle the professional installation and sealing.' },
+      { q: 'Can you install an AC in a sliding window?', a: 'Yes, we can install AC units in both traditional double-hung windows and horizontal sliding windows, though they require different installation techniques and sealing materials.' }
+    ]
   }
 };
 

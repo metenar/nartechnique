@@ -55,6 +55,7 @@ export default async function Home() {
             alt="Handyman mounting a TV in a modern home"
             fill
             priority
+            sizes="100vw"
           />
         </div>
       </section>
@@ -113,6 +114,12 @@ export default async function Home() {
             description="Professional installation or replacement of under-sink water filters and RO units."
             icon="💧"
             href="/services/water-treatment-installation-san-mateo"
+          />
+          <ServiceCard
+            title="Window / Portable AC Install"
+            description="Secure, perfectly sealed, and leveled installation for window and portable air conditioning units."
+            icon="❄️"
+            href="/services/window-ac-installation-san-mateo"
           />
         </div>
       </section>

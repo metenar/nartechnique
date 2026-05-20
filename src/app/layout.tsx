@@ -21,6 +21,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={inter.variable}>
+      <head>
+        <link rel="icon" href="/nar-favicon.svg?v=6" type="image/svg+xml" />
+        <link rel="shortcut icon" href="/nar-favicon.svg?v=6" type="image/svg+xml" />
+      </head>
       <body>
         <Navbar />
         <main>{children}</main>
