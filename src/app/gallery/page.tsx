@@ -19,6 +19,9 @@ async function getContent() {
 export const metadata = {
   title: 'Project Gallery | Nar Technique',
   description: 'View photos of our recent handyman, TV mounting, and installation projects across the Bay Area.',
+  alternates: {
+    canonical: '/gallery',
+  },
 };
 
 export default async function GalleryPage() {

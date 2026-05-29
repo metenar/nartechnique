@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import fs from "fs/promises";
@@ -7,6 +8,12 @@ import { Button } from "@/components/Button/Button";
 import { ServiceCard } from "@/components/ServiceCard/ServiceCard";
 import { TestimonialCard } from "@/components/TestimonialCard/TestimonialCard";
 import styles from "./page.module.css";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: '/',
+  },
+};
 
 // Function to fetch content
 async function getContent() {

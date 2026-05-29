@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar/Navbar";
 import { Footer } from "@/components/Footer/Footer";
+import { AnalyticsTracker } from "@/components/AnalyticsTracker/AnalyticsTracker";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -19,9 +20,6 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://www.nartechnique.com'),
   title: "Nar Technique | Bay Area Handyman Services",
   description: "Expert TV mounting, appliance installation, and handyman services in San Mateo & the Bay Area.",
-  alternates: {
-    canonical: '/',
-  },
 };
 
 const jsonLd = {
@@ -56,6 +54,7 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <AnalyticsTracker />
         <Navbar />
         <main>{children}</main>
         <Footer />

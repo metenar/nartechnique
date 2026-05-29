@@ -53,3 +53,34 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Failed to save content' }, { status: 500 });
   }
 }
+
+export async function DELETE(req: NextRequest) {
+  try {
+    const { searchParams } = new URL(req.url);
+    const id = searchParams.get('id');
+    const type = searchParams.get('type');
+
+    if (!id || !type) {
+      return NextResponse.json({ error: 'Missing id or type' }, { status: 400 });
+    }
+
+    const fileData = await fs.readFile(contentFilePath, 'utf8');
+    const currentContent = JSON.parse(fileData);
+    let updatedContent = { ...currentContent };
+
+    if (type === 'review') {
+      updatedContent.reviews = currentContent.reviews.filter((r: any) => r.id !== id);
+    } else if (type === 'gallery') {
+      updatedContent.gallery = currentContent.gallery.filter((g: any) => g.id !== id);
+    } else {
+      return NextResponse.json({ error: 'Invalid type' }, { status: 400 });
+    }
+
+    await fs.writeFile(contentFilePath, JSON.stringify(updatedContent, null, 2), 'utf8');
+
+    return NextResponse.json({ success: true, data: updatedContent });
+  } catch (error) {
+    console.error('Error deleting content:', error);
+    return NextResponse.json({ error: 'Failed to delete content' }, { status: 500 });
+  }
+}
