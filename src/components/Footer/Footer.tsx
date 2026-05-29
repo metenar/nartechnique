@@ -32,18 +32,18 @@ export const Footer = () => {
         <div className={styles.column}>
           <h3>Service Areas</h3>
           <ul className={styles.multiColumnLinks}>
-            <li><Link href="/services/handyman-san-mateo">San Mateo</Link></li>
-            <li><Link href="/services/handyman-foster-city">Foster City</Link></li>
-            <li><Link href="/services/handyman-burlingame">Burlingame</Link></li>
-            <li><Link href="/services/handyman-belmont">Belmont</Link></li>
-            <li><Link href="/services/handyman-redwood-city">Redwood City</Link></li>
-            <li><Link href="/services/handyman-san-carlos">San Carlos</Link></li>
-            <li><Link href="/services/handyman-palo-alto">Palo Alto</Link></li>
-            <li><Link href="/services/handyman-fremont">Fremont</Link></li>
-            <li><Link href="/services/handyman-newark">Newark</Link></li>
-            <li><Link href="/services/handyman-hayward">Hayward</Link></li>
-            <li><Link href="/services/handyman-oakland">Oakland</Link></li>
-            <li><Link href="/services/handyman-san-francisco">San Francisco</Link></li>
+            <li>San Mateo</li>
+            <li>Foster City</li>
+            <li>Burlingame</li>
+            <li>Belmont</li>
+            <li>Redwood City</li>
+            <li>San Carlos</li>
+            <li>Palo Alto</li>
+            <li>Fremont</li>
+            <li>Newark</li>
+            <li>Hayward</li>
+            <li>Oakland</li>
+            <li>San Francisco</li>
           </ul>
         </div>
 
