@@ -2,16 +2,28 @@ import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs/promises';
 import path from 'path';
 
-// Local fallback analytics path
-const analyticsFilePath = path.join(process.cwd(), 'src', 'data', 'analytics.json');
+// Primary local path and /tmp writable fallback path
+const localAnalyticsPath = path.join(process.cwd(), 'src', 'data', 'analytics.json');
+const tmpAnalyticsPath = '/tmp/analytics.json';
 
-// Ensure local fallback file and directory exist
-async function ensureLocalFile() {
+// In-memory cache in case both Blobs and File Systems fail or are read-only
+let memoryCache: Record<string, { newVisitors: number; totalVisits: number }> = {};
+
+// Helper to find the best writable local path (returns /tmp on serverless environments if src is read-only)
+async function getBestLocalPath(): Promise<string | null> {
   try {
-    await fs.access(analyticsFilePath);
+    // Try primary src path first
+    await fs.mkdir(path.dirname(localAnalyticsPath), { recursive: true });
+    await fs.access(path.dirname(localAnalyticsPath));
+    return localAnalyticsPath;
   } catch {
-    await fs.mkdir(path.dirname(analyticsFilePath), { recursive: true });
-    await fs.writeFile(analyticsFilePath, JSON.stringify({}), 'utf8');
+    try {
+      // Fallback to /tmp which is always writable on serverless (Netlify)
+      await fs.mkdir(path.dirname(tmpAnalyticsPath), { recursive: true });
+      return tmpAnalyticsPath;
+    } catch {
+      return null;
+    }
   }
 }
 
@@ -29,42 +41,65 @@ async function getBlobStore() {
   return null;
 }
 
-// Unified helper to read analytics data (handles Netlify Blobs & FS fallback)
+// Unified helper to read analytics data (handles Netlify Blobs & resilient local fallbacks)
 async function readAnalyticsData(): Promise<Record<string, { newVisitors: number; totalVisits: number }>> {
   const store = await getBlobStore();
   if (store) {
     try {
       const data = await store.get('analytics-data', { type: 'json' });
-      return (data as Record<string, { newVisitors: number; totalVisits: number }>) || {};
+      if (data) {
+        return data as Record<string, { newVisitors: number; totalVisits: number }>;
+      }
     } catch (err) {
-      console.error('Error reading from Netlify Blobs, trying local FS:', err);
+      console.error('Error reading from Netlify Blobs:', err);
     }
   }
 
-  // Fallback to local file
-  await ensureLocalFile();
-  const fileData = await fs.readFile(analyticsFilePath, 'utf8');
-  if (fileData.trim()) {
-    return JSON.parse(fileData);
+  // Fallback to local files
+  try {
+    const filePath = await getBestLocalPath();
+    if (filePath) {
+      try {
+        const fileData = await fs.readFile(filePath, 'utf8');
+        if (fileData.trim()) {
+          const parsed = JSON.parse(fileData);
+          memoryCache = { ...memoryCache, ...parsed }; // Sync cache
+          return parsed;
+        }
+      } catch {
+        // File doesn't exist yet, return cache
+      }
+    }
+  } catch (err) {
+    console.error('Error reading filesystem:', err);
   }
-  return {};
+
+  return memoryCache;
 }
 
-// Unified helper to write analytics data (handles Netlify Blobs & FS fallback)
+// Unified helper to write analytics data (handles Netlify Blobs & resilient local fallbacks)
 async function writeAnalyticsData(data: Record<string, { newVisitors: number; totalVisits: number }>) {
+  memoryCache = { ...memoryCache, ...data }; // Sync cache
+
   const store = await getBlobStore();
   if (store) {
     try {
       await store.setJSON('analytics-data', data);
       return;
     } catch (err) {
-      console.error('Error writing to Netlify Blobs, writing to local FS:', err);
+      console.error('Error writing to Netlify Blobs:', err);
     }
   }
 
-  // Fallback to local file
-  await ensureLocalFile();
-  await fs.writeFile(analyticsFilePath, JSON.stringify(data, null, 2), 'utf8');
+  // Fallback to local files
+  try {
+    const filePath = await getBestLocalPath();
+    if (filePath) {
+      await fs.writeFile(filePath, JSON.stringify(data, null, 2), 'utf8');
+    }
+  } catch (err) {
+    console.error('Error writing to filesystem:', err);
+  }
 }
 
 // User-agent formatter for clean device notifications
@@ -91,7 +126,7 @@ async function sendDiscordNotification(
     return;
   }
 
-  // Capture geographic info from Netlify headers (or local fallback)
+  // Capture geographic info from Netlify headers
   const city = req.headers.get('x-city') || req.headers.get('x-nf-city') || '';
   const region = req.headers.get('x-region') || req.headers.get('x-nf-region') || '';
   const country = req.headers.get('x-country') || req.headers.get('x-nf-country') || '';
@@ -164,7 +199,8 @@ export async function GET() {
     return NextResponse.json(data);
   } catch (error) {
     console.error('Error reading analytics:', error);
-    return NextResponse.json({ error: 'Failed to read analytics' }, { status: 500 });
+    // Return empty dataset instead of crashing, keeping the page robust
+    return NextResponse.json({});
   }
 }
 
@@ -187,7 +223,7 @@ export async function POST(req: NextRequest) {
       analytics[today].newVisitors += 1;
     }
 
-    // Save counts back to active storage (Blobs / FS fallback)
+    // Save counts back to active storage (safely catches and redirects disk errors)
     await writeAnalyticsData(analytics);
 
     // Sum all-time unique visitor counts (sum of all newVisitors across all recorded days)
@@ -196,7 +232,7 @@ export async function POST(req: NextRequest) {
       0
     );
 
-    // Send Discord alert only for actual new unique visitors (preventing spam on refreshes)
+    // Send Discord alert only for actual new unique visitors
     if (isNewVisitor) {
       // Don't await the webhook call to respond faster to the browser
       sendDiscordNotification(analytics[today], allTimeUniqueCount, req).catch((err) =>
@@ -207,6 +243,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: true, data: analytics[today] });
   } catch (error) {
     console.error('Error updating analytics:', error);
-    return NextResponse.json({ error: 'Failed to update analytics' }, { status: 500 });
+    // Always return success to client browser to keep performance flawless even if DB is down
+    return NextResponse.json({ success: false, error: 'Storage failed, tracking bypassed' });
   }
 }
