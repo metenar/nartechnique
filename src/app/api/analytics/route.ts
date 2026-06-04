@@ -48,34 +48,47 @@ async function getBestLocalPath(): Promise<string | null> {
   }
 }
 
-// Helper to retrieve Netlify Blob store if running on Netlify
-async function getBlobStore() {
+// Helper to retrieve Netlify Blob store if running on Netlify (records diagnostic logs)
+async function getBlobStore(logs: any) {
   const isNetlify = process.env.NETLIFY || process.env.NETLIFY_LOCAL || process.env.NETLIFY_SITE_ID;
+  logs.env = {
+    NETLIFY: process.env.NETLIFY || 'not-set',
+    NETLIFY_LOCAL: process.env.NETLIFY_LOCAL || 'not-set',
+    NETLIFY_SITE_ID: process.env.NETLIFY_SITE_ID || 'not-set',
+  };
+
   if (isNetlify) {
     try {
       const { getStore } = await import('@netlify/blobs');
-      return getStore('site-analytics', { consistency: 'strong' });
-    } catch (err) {
+      const store = getStore('site-analytics', { consistency: 'strong' });
+      logs.storageUsed = 'Netlify Blobs';
+      return store;
+    } catch (err: any) {
+      logs.blobsError = 'Initialization failed: ' + (err?.message || String(err));
       console.warn('Could not initialize Netlify Blobs store. Falling back to local FS.', err);
     }
+  } else {
+    logs.blobsError = 'Not running inside a Netlify serverless context';
   }
   return null;
 }
 
 // Unified helper to read analytics data (handles Netlify Blobs & resilient local fallbacks)
-async function readAnalyticsData(): Promise<Record<string, { newVisitors: number; totalVisits: number }>> {
-  const store = await getBlobStore();
+async function readAnalyticsData(logs: any): Promise<Record<string, { newVisitors: number; totalVisits: number }>> {
+  const store = await getBlobStore(logs);
   if (store) {
     try {
       const data = await store.get('analytics-data', { type: 'json' });
       if (data) {
         return data as Record<string, { newVisitors: number; totalVisits: number }>;
       }
-    } catch (err) {
+    } catch (err: any) {
+      logs.blobsError = (logs.blobsError || '') + ' | Read error: ' + (err?.message || String(err));
       console.error('Error reading from Netlify Blobs:', err);
     }
   }
 
+  logs.storageUsed = 'Local FS Fallback';
   // Fallback to local files
   try {
     const filePath = await getBestLocalPath();
@@ -87,11 +100,12 @@ async function readAnalyticsData(): Promise<Record<string, { newVisitors: number
           memoryCache = { ...memoryCache, ...parsed }; // Sync cache
           return parsed;
         }
-      } catch {
-        // File doesn't exist yet, return cache
+      } catch (err: any) {
+        logs.fsError = 'Read error: ' + (err?.message || String(err));
       }
     }
-  } catch (err) {
+  } catch (err: any) {
+    logs.fsError = (logs.fsError || '') + ' | Path error: ' + (err?.message || String(err));
     console.error('Error reading filesystem:', err);
   }
 
@@ -99,15 +113,16 @@ async function readAnalyticsData(): Promise<Record<string, { newVisitors: number
 }
 
 // Unified helper to write analytics data (handles Netlify Blobs & resilient local fallbacks)
-async function writeAnalyticsData(data: Record<string, { newVisitors: number; totalVisits: number }>) {
+async function writeAnalyticsData(data: Record<string, { newVisitors: number; totalVisits: number }>, logs: any) {
   memoryCache = { ...memoryCache, ...data }; // Sync cache
 
-  const store = await getBlobStore();
+  const store = await getBlobStore(logs);
   if (store) {
     try {
       await store.setJSON('analytics-data', data);
       return;
-    } catch (err) {
+    } catch (err: any) {
+      logs.blobsError = (logs.blobsError || '') + ' | Write error: ' + (err?.message || String(err));
       console.error('Error writing to Netlify Blobs:', err);
     }
   }
@@ -118,7 +133,8 @@ async function writeAnalyticsData(data: Record<string, { newVisitors: number; to
     if (filePath) {
       await fs.writeFile(filePath, JSON.stringify(data, null, 2), 'utf8');
     }
-  } catch (err) {
+  } catch (err: any) {
+    logs.fsError = (logs.fsError || '') + ' | Write error: ' + (err?.message || String(err));
     console.error('Error writing to filesystem:', err);
   }
 }
@@ -215,25 +231,26 @@ async function sendDiscordNotification(
 
 // GET handler (Reads analytics for the admin dashboard)
 export async function GET() {
+  const logs: any = { storageUsed: 'unknown' };
   try {
-    const data = await readAnalyticsData();
+    const data = await readAnalyticsData(logs);
     return NextResponse.json(data);
   } catch (error) {
     console.error('Error reading analytics:', error);
-    // Return empty dataset instead of crashing, keeping the page robust
-    return NextResponse.json({});
+    return NextResponse.json({ error: 'Failed to read analytics', debug: logs }, { status: 500 });
   }
 }
 
 // POST handler (Tracks a visit and triggers Discord notifications on new sessions)
 export async function POST(req: NextRequest) {
+  const logs: any = { storageUsed: 'unknown' };
   try {
     const body = await req.json();
     const { isNewVisitor } = body;
     
     const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
     
-    const analytics = await readAnalyticsData();
+    const analytics = await readAnalyticsData(logs);
     
     if (!analytics[today]) {
       analytics[today] = { newVisitors: 0, totalVisits: 0 };
@@ -244,10 +261,10 @@ export async function POST(req: NextRequest) {
       analytics[today].newVisitors += 1;
     }
 
-    // Save counts back to active storage (safely catches and redirects disk errors)
-    await writeAnalyticsData(analytics);
+    // Save counts back to active storage
+    await writeAnalyticsData(analytics, logs);
 
-    // Sum all-time unique visitor counts (sum of all newVisitors across all recorded days)
+    // Sum all-time unique visitor counts
     const allTimeUniqueCount = Object.values(analytics).reduce(
       (sum, day) => sum + (day.newVisitors || 0),
       0
@@ -261,10 +278,13 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    return NextResponse.json({ success: true, data: analytics[today] });
-  } catch (error) {
+    return NextResponse.json({ success: true, data: analytics[today], debug: logs });
+  } catch (error: any) {
     console.error('Error updating analytics:', error);
-    // Always return success to client browser to keep performance flawless even if DB is down
-    return NextResponse.json({ success: false, error: 'Storage failed, tracking bypassed' });
+    return NextResponse.json({ 
+      success: false, 
+      error: 'Storage failed, tracking bypassed', 
+      debug: { ...logs, error: error?.message || String(error) } 
+    });
   }
 }
