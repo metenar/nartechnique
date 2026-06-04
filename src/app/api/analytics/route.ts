@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs/promises';
 import path from 'path';
 
+export const dynamic = 'force-dynamic';
+
 // Primary local path and /tmp writable fallback path
 const localAnalyticsPath = path.join(process.cwd(), 'src', 'data', 'analytics.json');
 const tmpAnalyticsPath = '/tmp/analytics.json';
