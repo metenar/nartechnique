@@ -11,21 +11,40 @@ const tmpAnalyticsPath = '/tmp/analytics.json';
 // In-memory cache in case both Blobs and File Systems fail or are read-only
 let memoryCache: Record<string, { newVisitors: number; totalVisits: number }> = {};
 
-// Helper to find the best writable local path (returns /tmp on serverless environments if src is read-only)
-async function getBestLocalPath(): Promise<string | null> {
+// Helper to initialize and seed /tmp/analytics.json with repository data on Netlify
+async function ensureTmpFileSeeded() {
   try {
-    // Try primary src path first
-    await fs.mkdir(path.dirname(localAnalyticsPath), { recursive: true });
-    await fs.access(path.dirname(localAnalyticsPath));
-    return localAnalyticsPath;
+    await fs.access(tmpAnalyticsPath);
   } catch {
     try {
-      // Fallback to /tmp which is always writable on serverless (Netlify)
+      let staticData = '{}';
+      try {
+        staticData = await fs.readFile(localAnalyticsPath, 'utf8');
+      } catch {
+        // No static data in build, start fresh
+      }
       await fs.mkdir(path.dirname(tmpAnalyticsPath), { recursive: true });
-      return tmpAnalyticsPath;
-    } catch {
-      return null;
+      await fs.writeFile(tmpAnalyticsPath, staticData, 'utf8');
+    } catch (e) {
+      console.error('Failed to seed /tmp/analytics.json:', e);
     }
+  }
+}
+
+// Helper to find the best writable local path (returns /tmp on serverless Netlify, seeded with repo data)
+async function getBestLocalPath(): Promise<string | null> {
+  const isNetlify = process.env.NETLIFY || process.env.NETLIFY_SITE_ID;
+  if (isNetlify) {
+    await ensureTmpFileSeeded();
+    return tmpAnalyticsPath;
+  }
+
+  // Local development
+  try {
+    await fs.mkdir(path.dirname(localAnalyticsPath), { recursive: true });
+    return localAnalyticsPath;
+  } catch {
+    return null;
   }
 }
 
