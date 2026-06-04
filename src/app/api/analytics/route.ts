@@ -31,44 +31,52 @@ async function ensureTmpFileSeeded() {
   }
 }
 
-// Helper to find the best writable local path (returns /tmp on serverless Netlify, seeded with repo data)
-async function getBestLocalPath(): Promise<string | null> {
-  const isNetlify = process.env.NETLIFY || process.env.NETLIFY_SITE_ID;
-  if (isNetlify) {
-    await ensureTmpFileSeeded();
-    return tmpAnalyticsPath;
-  }
+// Global cached resolved path to avoid repeating disk write tests
+let resolvedLocalPath: string | null = null;
 
-  // Local development
+// Helper to find the best writable local path by doing an active write-test
+async function getBestLocalPath(): Promise<string | null> {
+  if (resolvedLocalPath) return resolvedLocalPath;
+
+  // 1. Try writing a test file to check if the repository folder is writable
   try {
-    await fs.mkdir(path.dirname(localAnalyticsPath), { recursive: true });
+    const testDir = path.dirname(localAnalyticsPath);
+    await fs.mkdir(testDir, { recursive: true });
+    
+    const testFilePath = path.join(testDir, '.write-test');
+    await fs.writeFile(testFilePath, 'test', 'utf8');
+    await fs.unlink(testFilePath);
+
+    resolvedLocalPath = localAnalyticsPath;
     return localAnalyticsPath;
-  } catch {
-    return null;
+  } catch (err) {
+    // 2. If it is a read-only filesystem (like Netlify production), use /tmp fallback
+    try {
+      await ensureTmpFileSeeded();
+      resolvedLocalPath = tmpAnalyticsPath;
+      return tmpAnalyticsPath;
+    } catch {
+      return null;
+    }
   }
 }
 
 // Helper to retrieve Netlify Blob store if running on Netlify (records diagnostic logs)
 async function getBlobStore(logs: any) {
-  const isNetlify = process.env.NETLIFY || process.env.NETLIFY_LOCAL || process.env.NETLIFY_SITE_ID;
   logs.env = {
     NETLIFY: process.env.NETLIFY || 'not-set',
     NETLIFY_LOCAL: process.env.NETLIFY_LOCAL || 'not-set',
     NETLIFY_SITE_ID: process.env.NETLIFY_SITE_ID || 'not-set',
   };
 
-  if (isNetlify) {
-    try {
-      const { getStore } = await import('@netlify/blobs');
-      const store = getStore('site-analytics', { consistency: 'strong' });
-      logs.storageUsed = 'Netlify Blobs';
-      return store;
-    } catch (err: any) {
-      logs.blobsError = 'Initialization failed: ' + (err?.message || String(err));
-      console.warn('Could not initialize Netlify Blobs store. Falling back to local FS.', err);
-    }
-  } else {
-    logs.blobsError = 'Not running inside a Netlify serverless context';
+  try {
+    const { getStore } = await import('@netlify/blobs');
+    const store = getStore('site-analytics', { consistency: 'strong' });
+    logs.storageUsed = 'Netlify Blobs';
+    return store;
+  } catch (err: any) {
+    logs.blobsError = 'Initialization failed: ' + (err?.message || String(err));
+    console.warn('Could not initialize Netlify Blobs store. Falling back to local FS.', err);
   }
   return null;
 }
