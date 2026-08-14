@@ -33,8 +33,10 @@ export default function AdminPage() {
         const aData = await aRes.json();
         const chartData = Object.keys(aData).map(date => ({
           date,
-          newVisitors: aData[date].newVisitors,
-          totalVisits: aData[date].totalVisits
+          newVisitors: aData[date].newVisitors || 0,
+          totalVisits: aData[date].totalVisits || 0,
+          callClicks: aData[date].callClicks || 0,
+          textClicks: aData[date].textClicks || 0,
         })).sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
         setAnalyticsData(chartData);
       }
@@ -167,11 +169,13 @@ export default function AdminPage() {
                   <Legend />
                   <Line type="monotone" dataKey="totalVisits" name="Toplam Ziyaret (Total Visits)" stroke="var(--color-primary)" strokeWidth={3} />
                   <Line type="monotone" dataKey="newVisitors" name="Yeni Ziyaretçi (New Visitors)" stroke="#f97316" strokeWidth={3} />
+                  <Line type="monotone" dataKey="callClicks" name="Arama Tıklamaları (Call Clicks)" stroke="#10b981" strokeWidth={2} strokeDasharray="5 5" />
+                  <Line type="monotone" dataKey="textClicks" name="Mesaj Tıklamaları (SMS Clicks)" stroke="#8b5cf6" strokeWidth={2} strokeDasharray="5 5" />
                 </LineChart>
               </ResponsiveContainer>
             </div>
 
-            {/* Total Visitors Summary under Chart */}
+            {/* Total Visitors & Action Clicks Summary under Chart */}
             <div className={styles.statsSummary}>
               <div className={`${styles.statCard} ${styles.statCardTotal}`}>
                 <div className={styles.statHeader}>
@@ -193,6 +197,28 @@ export default function AdminPage() {
                   {analyticsData.reduce((sum, item) => sum + (item.newVisitors || 0), 0).toLocaleString('tr-TR')}
                 </span>
                 <span className={styles.statSubtext}>Benzersiz tekil ziyaretçi toplamı</span>
+              </div>
+
+              <div className={`${styles.statCard} ${styles.statCardCall}`}>
+                <div className={styles.statHeader}>
+                  <span className={styles.statDotCall}></span>
+                  <span className={styles.statLabel}>Başlangıçtan İtibaren Toplam Arama (Call)</span>
+                </div>
+                <span className={styles.statValue} style={{ color: '#10b981' }}>
+                  {analyticsData.reduce((sum, item) => sum + (item.callClicks || 0), 0).toLocaleString('tr-TR')}
+                </span>
+                <span className={styles.statSubtext}>Arama butonlarına tıklanma sayısı</span>
+              </div>
+
+              <div className={`${styles.statCard} ${styles.statCardText}`}>
+                <div className={styles.statHeader}>
+                  <span className={styles.statDotText}></span>
+                  <span className={styles.statLabel}>Başlangıçtan İtibaren Toplam Mesaj (SMS)</span>
+                </div>
+                <span className={styles.statValue} style={{ color: '#8b5cf6' }}>
+                  {analyticsData.reduce((sum, item) => sum + (item.textClicks || 0), 0).toLocaleString('tr-TR')}
+                </span>
+                <span className={styles.statSubtext}>Mesaj gönderme butonlarına tıklanma sayısı</span>
               </div>
             </div>
           </>

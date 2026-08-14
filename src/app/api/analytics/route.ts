@@ -8,8 +8,15 @@ export const dynamic = 'force-dynamic';
 const localAnalyticsPath = path.join(process.cwd(), 'src', 'data', 'analytics.json');
 const tmpAnalyticsPath = '/tmp/analytics.json';
 
+export interface DailyAnalytics {
+  newVisitors: number;
+  totalVisits: number;
+  callClicks?: number;
+  textClicks?: number;
+}
+
 // In-memory cache in case both Blobs and File Systems fail or are read-only
-let memoryCache: Record<string, { newVisitors: number; totalVisits: number }> = {};
+let memoryCache: Record<string, DailyAnalytics> = {};
 
 // Helper to initialize and seed /tmp/analytics.json with repository data on Netlify
 async function ensureTmpFileSeeded() {
@@ -82,13 +89,13 @@ async function getBlobStore(logs: any) {
 }
 
 // Unified helper to read analytics data (handles Netlify Blobs & resilient local fallbacks)
-async function readAnalyticsData(logs: any): Promise<Record<string, { newVisitors: number; totalVisits: number }>> {
+async function readAnalyticsData(logs: any): Promise<Record<string, DailyAnalytics>> {
   const store = await getBlobStore(logs);
   if (store) {
     try {
       const data = await store.get('analytics-data', { type: 'json' });
       if (data) {
-        return data as Record<string, { newVisitors: number; totalVisits: number }>;
+        return data as Record<string, DailyAnalytics>;
       }
     } catch (err: any) {
       logs.blobsError = (logs.blobsError || '') + ' | Read error: ' + (err?.message || String(err));
@@ -121,7 +128,7 @@ async function readAnalyticsData(logs: any): Promise<Record<string, { newVisitor
 }
 
 // Unified helper to write analytics data (handles Netlify Blobs & resilient local fallbacks)
-async function writeAnalyticsData(data: Record<string, { newVisitors: number; totalVisits: number }>, logs: any) {
+async function writeAnalyticsData(data: Record<string, DailyAnalytics>, logs: any) {
   memoryCache = { ...memoryCache, ...data }; // Sync cache
 
   const store = await getBlobStore(logs);
@@ -249,24 +256,30 @@ export async function GET() {
   }
 }
 
-// POST handler (Tracks a visit and triggers Discord notifications on new sessions)
+// POST handler (Tracks visits and button click events)
 export async function POST(req: NextRequest) {
   const logs: any = { storageUsed: 'unknown' };
   try {
     const body = await req.json();
-    const { isNewVisitor } = body;
+    const { isNewVisitor, eventType } = body;
     
     const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
     
     const analytics = await readAnalyticsData(logs);
     
     if (!analytics[today]) {
-      analytics[today] = { newVisitors: 0, totalVisits: 0 };
+      analytics[today] = { newVisitors: 0, totalVisits: 0, callClicks: 0, textClicks: 0 };
     }
 
-    analytics[today].totalVisits += 1;
-    if (isNewVisitor) {
-      analytics[today].newVisitors += 1;
+    if (eventType === 'call') {
+      analytics[today].callClicks = (analytics[today].callClicks || 0) + 1;
+    } else if (eventType === 'text') {
+      analytics[today].textClicks = (analytics[today].textClicks || 0) + 1;
+    } else {
+      analytics[today].totalVisits = (analytics[today].totalVisits || 0) + 1;
+      if (isNewVisitor) {
+        analytics[today].newVisitors = (analytics[today].newVisitors || 0) + 1;
+      }
     }
 
     // Save counts back to active storage
@@ -279,7 +292,7 @@ export async function POST(req: NextRequest) {
     );
 
     // Send Discord alert only for actual new unique visitors
-    if (isNewVisitor) {
+    if (isNewVisitor && !eventType) {
       // Don't await the webhook call to respond faster to the browser
       sendDiscordNotification(analytics[today], allTimeUniqueCount, req).catch((err) =>
         console.error('Discord notification promise rejected:', err)
