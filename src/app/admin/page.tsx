@@ -151,23 +151,51 @@ export default function AdminPage() {
 
       {/* Analytics Section */}
       <div className={styles.card} style={{marginBottom: '3rem'}}>
-        <h2>Visitor Statistics</h2>
+        <h2>Ziyaretçi İstatistikleri (Visitor Statistics)</h2>
+        
         {analyticsData.length === 0 ? (
-          <p>No visitor data available yet.</p>
+          <p>Henüz ziyaretçi verisi bulunmuyor (No visitor data available yet).</p>
         ) : (
-          <div className={styles.chartContainer}>
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={analyticsData} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="date" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Line type="monotone" dataKey="totalVisits" name="Total Visits" stroke="var(--color-primary)" strokeWidth={3} />
-                <Line type="monotone" dataKey="newVisitors" name="New Visitors" stroke="#f97316" strokeWidth={3} />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
+          <>
+            <div className={styles.chartContainer}>
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart data={analyticsData} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="date" />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Line type="monotone" dataKey="totalVisits" name="Toplam Ziyaret (Total Visits)" stroke="var(--color-primary)" strokeWidth={3} />
+                  <Line type="monotone" dataKey="newVisitors" name="Yeni Ziyaretçi (New Visitors)" stroke="#f97316" strokeWidth={3} />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+
+            {/* Total Visitors Summary under Chart */}
+            <div className={styles.statsSummary}>
+              <div className={`${styles.statCard} ${styles.statCardTotal}`}>
+                <div className={styles.statHeader}>
+                  <span className={styles.statDotTotal}></span>
+                  <span className={styles.statLabel}>Başlangıçtan İtibaren Toplam Ziyaretçi</span>
+                </div>
+                <span className={styles.statValue}>
+                  {analyticsData.reduce((sum, item) => sum + (item.totalVisits || 0), 0).toLocaleString('tr-TR')}
+                </span>
+                <span className={styles.statSubtext}>Tüm sayfa görüntüleme / ziyaret toplamı</span>
+              </div>
+
+              <div className={`${styles.statCard} ${styles.statCardNew}`}>
+                <div className={styles.statHeader}>
+                  <span className={styles.statDotNew}></span>
+                  <span className={styles.statLabel}>Başlangıçtan İtibaren Toplam Yeni Ziyaretçi</span>
+                </div>
+                <span className={styles.statValue} style={{ color: '#f97316' }}>
+                  {analyticsData.reduce((sum, item) => sum + (item.newVisitors || 0), 0).toLocaleString('tr-TR')}
+                </span>
+                <span className={styles.statSubtext}>Benzersiz tekil ziyaretçi toplamı</span>
+              </div>
+            </div>
+          </>
         )}
       </div>
 
