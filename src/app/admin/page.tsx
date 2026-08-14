@@ -169,8 +169,6 @@ export default function AdminPage() {
                   <Legend />
                   <Line type="monotone" dataKey="totalVisits" name="Toplam Ziyaret (Total Visits)" stroke="var(--color-primary)" strokeWidth={3} />
                   <Line type="monotone" dataKey="newVisitors" name="Yeni Ziyaretçi (New Visitors)" stroke="#f97316" strokeWidth={3} />
-                  <Line type="monotone" dataKey="callClicks" name="Arama Tıklamaları (Call Clicks)" stroke="#10b981" strokeWidth={2} strokeDasharray="5 5" />
-                  <Line type="monotone" dataKey="textClicks" name="Mesaj Tıklamaları (SMS Clicks)" stroke="#8b5cf6" strokeWidth={2} strokeDasharray="5 5" />
                 </LineChart>
               </ResponsiveContainer>
             </div>
