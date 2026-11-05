@@ -14,7 +14,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'furniture-assembly-san-mateo',
     'art-installation-san-mateo',
     'water-treatment-installation-san-mateo',
-    'window-ac-installation-san-mateo'
+    'window-ac-installation-san-mateo',
+    'ceiling-fan-installation-burlingame'
   ];
 
   const serviceUrls: MetadataRoute.Sitemap = services.map((slug) => ({

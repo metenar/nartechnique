@@ -4,7 +4,7 @@ import { Button } from '@/components/Button/Button';
 import styles from './page.module.css';
 
 // SEO Pages Configuration
-const servicePages: Record<string, { title: string, description: string, content: string, faqs: { q: string, a: string }[] }> = {
+const servicePages: Record<string, { title: string, description: string, content: string, servicesList?: string[], areasServed?: string[], faqs: { q: string, a: string }[] }> = {
   'tv-mounting-san-mateo': {
     title: 'Professional TV Mounting in San Mateo',
     description: 'Expert TV wall mounting services in San Mateo and the Bay Area. Wire concealment, perfectly level, and safe installation. Call for a free quote.',
@@ -103,6 +103,36 @@ const servicePages: Record<string, { title: string, description: string, content
       { q: 'Do you provide the AC unit?', a: 'No, you provide the unit, and we handle the professional installation and sealing.' },
       { q: 'Can you install an AC in a sliding window?', a: 'Yes, we can install AC units in both traditional double-hung windows and horizontal sliding windows, though they require different installation techniques and sealing materials.' }
     ]
+  },
+  'ceiling-fan-installation-burlingame': {
+    title: 'Professional Ceiling Fan Installation in Burlingame & San Mateo',
+    description: 'Need a ceiling fan installed? Nar Technique provides professional ceiling fan installation in Burlingame, San Mateo and nearby Bay Area communities. Contact us for a quote.',
+    content: 'Looking for reliable ceiling fan installation? Nar Technique provides ceiling fan installation and replacement services in Burlingame, San Mateo and surrounding Bay Area communities. Whether you are replacing an existing ceiling fan or installing a new fan in a room, we can help make the installation process simple and convenient. Every installation is different — we assess the existing mounting location and installation requirements before starting the job.',
+    servicesList: [
+      'Installation of new ceiling fans',
+      'Replacement of existing ceiling fans',
+      'Removal of old ceiling fans',
+      'Installation of ceiling fans with light kits',
+      'Assembly and mounting of ceiling fan units',
+      'Installation using existing, properly rated electrical connections and fan-support boxes'
+    ],
+    areasServed: [
+      'Burlingame',
+      'San Mateo',
+      'San Bruno',
+      'Millbrae',
+      'Foster City',
+      'Redwood City',
+      'South San Francisco',
+      'Nearby Peninsula communities'
+    ],
+    faqs: [
+      { q: 'How much does ceiling fan installation cost?', a: 'The cost depends on the type of fan, existing mounting box, ceiling height and installation requirements. Contact us for a quote.' },
+      { q: 'Can you replace my existing ceiling fan?', a: 'Yes. We can remove an existing ceiling fan and install a replacement when the existing electrical connections and mounting support are suitable.' },
+      { q: 'Can you install a ceiling fan where there is currently only a light fixture?', a: 'It depends on the existing electrical box and ceiling support. A standard light fixture box may not be rated to support a ceiling fan. The mounting support and wiring must be evaluated before installation.' },
+      { q: 'Do you install ceiling fans with lights?', a: 'Yes. We can assemble and install compatible ceiling fan and light-kit combinations.' },
+      { q: 'Do you provide ceiling fan installation in Burlingame and San Mateo?', a: 'Yes. We serve Burlingame, San Mateo and nearby Bay Area communities.' }
+    ]
   }
 };
 
@@ -142,7 +172,32 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         <div className={styles.mainContent}>
           <h2>Expert Service You Can Trust</h2>
           <p>{page.content}</p>
-          <p>At Nar Technique, we understand that inviting someone into your home requires trust. That's why we prioritize cleanliness, clear communication, and impeccable attention to detail on every single job. We serve San Mateo and the broader Bay Area with premium handyman services designed to make your life easier.</p>
+
+          {page.servicesList && (
+            <div className={styles.servicesList}>
+              <h2>Our Services</h2>
+              <ul>
+                {page.servicesList.map((item, index) => (
+                  <li key={index}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {page.areasServed && (
+            <div className={styles.areasSection}>
+              <h2>Areas We Serve</h2>
+              <ul>
+                {page.areasServed.map((area, index) => (
+                  <li key={index}>{area}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {!page.servicesList && (
+            <p>At Nar Technique, we understand that inviting someone into your home requires trust. That&apos;s why we prioritize cleanliness, clear communication, and impeccable attention to detail on every single job. We serve San Mateo and the broader Bay Area with premium handyman services designed to make your life easier.</p>
+          )}
 
           <div className={styles.faqSection}>
             <h2>Frequently Asked Questions</h2>
