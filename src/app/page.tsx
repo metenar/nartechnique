@@ -128,6 +128,18 @@ export default async function Home() {
             icon="❄️"
             href="/services/window-ac-installation-san-mateo"
           />
+          <ServiceCard
+            title="Ceiling Fan Installation"
+            description="Professional ceiling fan installation and replacement in Burlingame, San Mateo and nearby Bay Area communities."
+            icon="🌀"
+            href="/services/ceiling-fan-installation-burlingame"
+          />
+          <ServiceCard
+            title="Garbage Disposal Installation"
+            description="New installation or replacement of garbage disposal units. Proper fit, secure connections, and leak checks."
+            icon="🔧"
+            href="/services/garbage-disposal-installation-burlingame"
+          />
         </div>
       </section>
 
