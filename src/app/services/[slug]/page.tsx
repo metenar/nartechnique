@@ -133,6 +133,68 @@ const servicePages: Record<string, { title: string, description: string, content
       { q: 'Do you install ceiling fans with lights?', a: 'Yes. We can assemble and install compatible ceiling fan and light-kit combinations.' },
       { q: 'Do you provide ceiling fan installation in Burlingame and San Mateo?', a: 'Yes. We serve Burlingame, San Mateo and nearby Bay Area communities.' }
     ]
+  },
+  'smart-home-installation-san-mateo': {
+    title: 'Smart Home Device Installation in San Mateo',
+    description: 'Professional smart home installation in San Mateo. We set up smart thermostats, video doorbells, smart locks, cameras, and more. Contact Nar Technique for a quote.',
+    content: 'Looking for reliable smart home installation in San Mateo? Nar Technique helps homeowners set up and configure a wide range of smart home devices — from smart thermostats and video doorbells to smart locks and security cameras. We handle the physical installation, app setup, and basic network configuration so your devices work from day one.',
+    servicesList: [
+      'Smart thermostat installation (Nest, Ecobee, Honeywell, and others)',
+      'Video doorbell installation (Ring, Nest Hello, Arlo, and others)',
+      'Smart lock installation and configuration',
+      'Indoor and outdoor security camera installation',
+      'Smart light switch and dimmer installation',
+      'Smart plug and outlet installation',
+      'Basic Wi-Fi and network troubleshooting for smart devices',
+      'App setup and device pairing'
+    ],
+    areasServed: [
+      'San Mateo',
+      'Burlingame',
+      'San Bruno',
+      'Millbrae',
+      'Foster City',
+      'Redwood City',
+      'South San Francisco',
+      'Nearby Peninsula communities'
+    ],
+    faqs: [
+      { q: 'What smart home devices do you install?', a: 'We install smart thermostats, video doorbells, smart locks, indoor and outdoor security cameras, smart light switches, and smart plugs from most major brands.' },
+      { q: 'Do I need to buy the device first?', a: 'Yes. We ask that you purchase the device you want, and we handle the professional installation and configuration.' },
+      { q: 'Can you help set up the app and connect the device to Wi-Fi?', a: 'Yes. Basic app setup, device pairing, and Wi-Fi connection are included as part of the installation.' },
+      { q: 'Do you install smart thermostats if my current wiring does not have a C-wire?', a: 'Many modern smart thermostats can operate without a C-wire or include an adapter. We will assess your existing wiring before installation.' },
+      { q: 'How much does smart home installation cost?', a: 'The cost depends on the type and number of devices and installation requirements. Contact us for a quote.' }
+    ]
+  },
+  'garbage-disposal-installation-burlingame': {
+    title: 'Garbage Disposal Installation & Replacement in Burlingame and San Mateo',
+    description: 'Need a garbage disposal installed or replaced? Nar Technique offers garbage disposal installation services in Burlingame, San Mateo and nearby Bay Area communities.',
+    content: 'Need a new garbage disposal for your kitchen sink? Nar Technique provides garbage disposal installation and replacement services in Burlingame, San Mateo and surrounding Bay Area communities. Whether your existing disposal has stopped working or you are upgrading your kitchen with a new unit, we can help with the installation. We work with common residential garbage disposal units and help ensure that the installation is properly fitted to your existing sink and plumbing connections. You may need a replacement if your disposal is leaking, the motor hums but the unit does not operate properly, the unit frequently jams, you notice persistent unpleasant odors, or you are remodeling your kitchen. Some problems can be resolved without replacing the unit — we can assess the installation and discuss the appropriate solution.',
+    servicesList: [
+      'New garbage disposal installation',
+      'Replacement of existing garbage disposals',
+      'Removal of old disposal units',
+      'Reconnection of compatible drain connections',
+      'Inspection of existing mounting assemblies',
+      'Checking for leaks after installation'
+    ],
+    areasServed: [
+      'Burlingame',
+      'San Mateo',
+      'Millbrae',
+      'San Bruno',
+      'Foster City',
+      'Redwood City',
+      'South San Francisco',
+      'Nearby Bay Area communities'
+    ],
+    faqs: [
+      { q: 'How much does garbage disposal installation cost?', a: 'Pricing depends on whether this is a new installation or a replacement, the disposal model and the condition of the existing plumbing and mounting assembly. Contact us for a quote.' },
+      { q: 'Can you replace my old garbage disposal?', a: 'Yes. We can remove an existing unit and install a compatible replacement.' },
+      { q: 'Do I need to purchase the garbage disposal myself?', a: 'You can provide the unit you want installed. Please share its make and model when requesting a quote.' },
+      { q: 'How long does installation take?', a: 'Many straightforward replacement jobs can be completed in one visit. Additional plumbing or electrical work may require more time.' },
+      { q: 'Can you install a garbage disposal in a new kitchen sink?', a: 'Yes, provided the sink, mounting assembly, drain configuration and electrical supply are compatible.' }
+    ]
   }
 };
 
