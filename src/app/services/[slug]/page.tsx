@@ -195,6 +195,37 @@ const servicePages: Record<string, { title: string, description: string, content
       { q: 'How long does installation take?', a: 'Many straightforward replacement jobs can be completed in one visit. Additional plumbing or electrical work may require more time.' },
       { q: 'Can you install a garbage disposal in a new kitchen sink?', a: 'Yes, provided the sink, mounting assembly, drain configuration and electrical supply are compatible.' }
     ]
+  },
+  'appliance-installation-burlingame': {
+    title: 'Professional Appliance Installation in Burlingame & San Mateo',
+    description: 'Looking for appliance installation in Burlingame or San Mateo? Nar Technique provides washer, dryer, dishwasher, microwave and other residential appliance installation services.',
+    content: 'Need help installing a new home appliance? Nar Technique provides residential appliance installation services in Burlingame, San Mateo and surrounding Bay Area communities. From kitchen appliances to laundry equipment, we help homeowners install and replace appliances with care and attention to detail. We assess the installation area, appliance dimensions and existing connections to help ensure a proper fit. Depending on the appliance and installation conditions, the job may involve removing the existing appliance, positioning and leveling the new unit, connecting compatible water supply and drain lines, connecting approved electrical connections, checking accessible connections for leaks, and testing basic appliance operation. Gas connections, new electrical circuits, permit-required work and other specialized installations must be handled by appropriately licensed professionals where required.',
+    servicesList: [
+      'Dishwasher installation and replacement',
+      'Washing machine installation',
+      'Dryer installation',
+      'Over-the-range microwave installation',
+      'Range hood installation',
+      'Refrigerator installation and positioning',
+      'Other compatible residential appliance installations'
+    ],
+    areasServed: [
+      'Burlingame',
+      'San Mateo',
+      'San Bruno',
+      'Millbrae',
+      'Foster City',
+      'Redwood City',
+      'South San Francisco',
+      'Nearby Peninsula communities'
+    ],
+    faqs: [
+      { q: 'Do you install dishwashers?', a: 'Yes. We provide residential dishwasher installation and replacement when the existing connections and installation conditions are suitable.' },
+      { q: 'Can you install an over-the-range microwave?', a: 'Yes. We install compatible over-the-range microwaves. Cabinet dimensions, mounting requirements and required clearances must be checked before installation.' },
+      { q: 'Do you install washers and dryers?', a: 'Yes. We provide installation of compatible residential laundry appliances. Electrical, plumbing and venting requirements are assessed before installation.' },
+      { q: 'Do you remove old appliances?', a: 'Removal can be included depending on the appliance, access and project requirements. Please mention this when requesting a quote.' },
+      { q: 'How much does appliance installation cost?', a: 'Pricing depends on the appliance type, installation complexity, existing connections and whether removal of the old appliance is needed. Contact us for a project-specific quote.' }
+    ]
   }
 };
 

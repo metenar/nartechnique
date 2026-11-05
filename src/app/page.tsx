@@ -140,6 +140,12 @@ export default async function Home() {
             icon="🔧"
             href="/services/garbage-disposal-installation-burlingame"
           />
+          <ServiceCard
+            title="Appliance Installation"
+            description="Dishwasher, washer, dryer, microwave and range hood installation in Burlingame, San Mateo and nearby communities."
+            icon="🏠"
+            href="/services/appliance-installation-burlingame"
+          />
         </div>
       </section>
 

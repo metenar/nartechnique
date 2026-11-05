@@ -17,7 +17,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'window-ac-installation-san-mateo',
     'ceiling-fan-installation-burlingame',
     'smart-home-installation-san-mateo',
-    'garbage-disposal-installation-burlingame'
+    'garbage-disposal-installation-burlingame',
+    'appliance-installation-burlingame'
   ];
 
   const serviceUrls: MetadataRoute.Sitemap = services.map((slug) => ({
