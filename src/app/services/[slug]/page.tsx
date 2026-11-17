@@ -1,319 +1,295 @@
-import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
-import { Button } from '@/components/Button/Button';
-import styles from './page.module.css';
+import { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import fs from "fs/promises";
+import path from "path";
+import MapWrapper from "@/components/ServiceMap/MapWrapper";
+import { Button } from "@/components/Button/Button";
+import { ServiceCard } from "@/components/ServiceCard/ServiceCard";
+import { TestimonialCard } from "@/components/TestimonialCard/TestimonialCard";
+import styles from "./page.module.css";
 
-// SEO Pages Configuration
-const servicePages: Record<string, { title: string, description: string, content: string, servicesList?: string[], areasServed?: string[], faqs: { q: string, a: string }[] }> = {
-  'tv-mounting-san-mateo': {
-    title: 'Professional TV Mounting in San Mateo',
-    description: 'Expert TV wall mounting services in San Mateo and the Bay Area. Wire concealment, perfectly level, and safe installation. Call for a free quote.',
-    content: 'Are you looking for reliable TV mounting services in San Mateo? Nar Technique specializes in professional, clean, and perfectly level TV installations. Whether you need a standard drywall mount, fireplace mounting, or complex wire concealment, we have the technical expertise to get the job done right the first time.',
-    faqs: [
-      { q: 'Do you provide the TV mount?', a: 'We can provide high-quality tilting or full-motion mounts for an additional fee, or we can use a mount you have already purchased.' },
-      { q: 'Can you hide the wires inside the wall?', a: 'Yes, we offer professional wire concealment services to give your setup a clean, floating appearance.' }
-    ]
+export const metadata: Metadata = {
+  alternates: {
+    canonical: '/',
   },
-  'ceiling-fan-installation-san-mateo': {
-    title: 'Ceiling Fan Installation in San Mateo',
-    description: 'Safe and professional ceiling fan installation in San Mateo. Replace old fans or install new ones with expert care.',
-    content: 'Upgrade your home\'s comfort and energy efficiency with a new ceiling fan. Nar Technique offers professional ceiling fan installation in San Mateo. We ensure safe wiring, secure mounting to prevent wobbling, and clean installation.',
-    faqs: [
-      { q: 'Can you install a fan where there is no existing light?', a: 'Yes, but it requires running new wiring and installing a fan-rated junction box, which takes more time than a simple replacement.' },
-      { q: 'Do you assemble the fan?', a: 'Yes, full assembly of the new fan is included in our installation service.' }
-    ]
-  },
-  'faucet-replacement-san-mateo': {
-    title: 'Faucet/Sink  Replacement in San Mateo',
-    description: 'Quick and clean faucet/Sink replacement services in San Mateo for kitchens and bathrooms. Professional handyman plumbing services.',
-    content: 'A leaky or outdated faucet can ruin the look of your kitchen or bathroom. We provide fast, reliable, and clean faucet/Sink replacement services in San Mateo. We handle the removal of the old fixture, clean the area, and perfectly install the new one without the premium plumbing costs.',
-    faqs: [
-      { q: 'Do I need to buy the faucet first?', a: 'Yes, we ask that you purchase the faucet you want, and we will handle the professional installation.' },
-      { q: 'What if my shut-off valves are stuck?', a: 'We have the tools and experience to safely handle tricky plumbing situations under the sink.' }
-    ]
-  },
-  'garbage-disposal-installation-san-mateo': {
-    title: 'Garbage Disposal Installation in San Mateo',
-    description: 'Fast garbage disposal replacement and installation in San Mateo. Get your kitchen sink working perfectly again.',
-    content: 'Is your garbage disposal jammed, leaking, or making a terrible noise? Nar Technique provides professional garbage disposal replacement in San Mateo. We\'ll swap out your old unit with a new one, ensuring all connections are watertight and secure.',
-    faqs: [
-      { q: 'Do you haul away the old disposal?', a: 'Yes, we can haul away and dispose of the old unit for your convenience.' },
-      { q: 'How long does installation take?', a: 'A standard garbage disposal replacement typically takes about 1-2 hours.' }
-    ]
-  },
-  'light-fixture-installation-san-mateo': {
-    title: 'Light Fixture Installation in San Mateo',
-    description: 'Professional lighting installation for chandeliers, pendants, and flush mounts in San Mateo.',
-    content: 'Brighten up your home with our professional light fixture installation services in San Mateo. From elegant dining room chandeliers to modern kitchen pendants, we ensure safe and secure installation of all your lighting fixtures.',
-    faqs: [
-      { q: 'Can you install heavy chandeliers?', a: 'Yes, but very heavy fixtures may require us to install additional support in the ceiling.' },
-      { q: 'Do you change light switches too?', a: 'Yes, we can upgrade your switches to dimmers or smart switches as part of the service.' }
-    ]
-  },
-  'toilet-installation-san-mateo': {
-    title: 'Toilet Installation & Replacement in San Mateo',
-    description: 'Professional toilet replacement services in San Mateo. Clean, reliable, and perfectly sealed.',
-    content: 'Upgrade your bathroom with a new toilet. We provide professional toilet installation and replacement in San Mateo. We carefully remove the old unit, ensure the flange is in good condition, and install the new toilet with a perfect wax ring seal to prevent any future leaks.',
-    faqs: [
-      { q: 'Do you dispose of the old toilet?', a: 'Yes, we offer haul-away services for your old toilet.' },
-      { q: 'What if the floor underneath is damaged?', a: 'If we discover water damage to the subfloor, we will discuss the best repair options with you before proceeding.' }
-    ]
-  },
-  'appliance-installation-san-mateo': {
-    title: 'Appliance Installation in San Mateo',
-    description: 'Expert installation of washers, dryers, dishwashers, and over-the-range microwaves in San Mateo.',
-    content: 'Just bought new appliances? Nar Technique provides expert appliance installation in San Mateo. We install dishwashers, washers, dryers, and over-the-range microwaves, ensuring all water, drain, and electrical connections are perfectly secure.',
-    faqs: [
-      { q: 'Do you install built-in appliances?', a: 'Yes, we install built-in microwaves, dishwashers, and wall ovens.' },
-      { q: 'Do you pick up the appliance from the store?', a: 'No, we require the appliance to be delivered to your home prior to our installation appointment.' }
-    ]
-  },
-  'furniture-assembly-san-mateo': {
-    title: 'Furniture Assembly in San Mateo',
-    description: 'Fast and correct furniture assembly in San Mateo for IKEA, Wayfair, and custom pieces.',
-    content: 'Save yourself the weekend headache. We offer professional furniture assembly in San Mateo. Whether it\'s a complex IKEA wardrobe, a Wayfair bed frame, or a heavy desk, we assemble it quickly, correctly, and sturdily.',
-    faqs: [
-      { q: 'Do you anchor furniture to the wall?', a: 'Yes, for safety, especially with children in the home, we highly recommend and provide wall anchoring for dressers and bookshelves.' },
-      { q: 'Do you clean up the packaging?', a: 'We break down all cardboard boxes and organize the trash, leaving your space clean.' }
-    ]
-  },
-  'art-installation-san-mateo': {
-    title: 'Art & Mirror Installation in San Mateo',
-    description: 'Professional picture hanging, heavy mirror mounting, and gallery wall installation in San Mateo. Level, secure, and clean.',
-    content: 'Hanging heavy mirrors or creating the perfect gallery wall requires precision and the right hardware. We offer professional art and mirror installation services in San Mateo. Whether you need to securely anchor a massive mirror or perfectly align a series of frames, we have the tools and expertise to ensure your pieces are safe, level, and beautifully displayed.',
-    faqs: [
-      { q: 'Can you hang heavy mirrors on drywall?', a: 'Yes, we use specialized heavy-duty anchors designed specifically to hold substantial weight safely in drywall, even without a stud.' },
-      { q: 'Do you design gallery walls?', a: 'While we don\'t provide interior design services, if you lay out the arrangement you want, we will measure, level, and hang them perfectly to your specifications.' }
-    ]
-  },
-  'water-treatment-installation-san-mateo': {
-    title: 'Water Treatment System Installation in San Mateo',
-    description: 'Expert under-sink water filter and RO system installation and replacement services in San Mateo and the Bay Area.',
-    content: 'Ensure your home has access to pure, clean drinking water with professional water treatment system installation in San Mateo. We specialize in cleanly installing under-sink Reverse Osmosis (RO) units, simple inline water filters, and replacing old filtration systems with zero leaks.',
-    faqs: [
-      { q: 'Do you install Reverse Osmosis (RO) systems?', a: 'Yes, we professionally install under-sink RO systems, including safely drilling holes in countertops for the dedicated drinking water faucet if necessary.' },
-      { q: 'Can you replace my old water filter system?', a: 'Absolutely. We can cleanly remove your old system, dispose of it, and install a brand new modern water treatment system.' }
-    ]
-  },
-  'window-ac-installation-san-mateo': {
-    title: 'Window / Portable AC Installation in San Mateo',
-    description: 'Professional window and portable air conditioning installation services in San Mateo and the Bay Area. Secure, properly sealed, and efficient cooling setup.',
-    content: 'Stay cool during the summer heat with our professional window and portable air conditioning installation services. Installing an AC unit correctly is crucial for both efficiency and safety. We ensure your window unit is securely mounted, perfectly leveled for proper drainage, and tightly sealed to prevent drafts and bugs. For portable units, we correctly vent the exhaust securely through your window.',
-    faqs: [
-      { q: 'Do you provide the AC unit?', a: 'No, you provide the unit, and we handle the professional installation and sealing.' },
-      { q: 'Can you install an AC in a sliding window?', a: 'Yes, we can install AC units in both traditional double-hung windows and horizontal sliding windows, though they require different installation techniques and sealing materials.' }
-    ]
-  },
-  'ceiling-fan-installation-burlingame': {
-    title: 'Professional Ceiling Fan Installation in Burlingame & San Mateo',
-    description: 'Need a ceiling fan installed? Nar Technique provides professional ceiling fan installation in Burlingame, San Mateo and nearby Bay Area communities. Contact us for a quote.',
-    content: 'Looking for reliable ceiling fan installation? Nar Technique provides ceiling fan installation and replacement services in Burlingame, San Mateo and surrounding Bay Area communities. Whether you are replacing an existing ceiling fan or installing a new fan in a room, we can help make the installation process simple and convenient. Every installation is different — we assess the existing mounting location and installation requirements before starting the job.',
-    servicesList: [
-      'Installation of new ceiling fans',
-      'Replacement of existing ceiling fans',
-      'Removal of old ceiling fans',
-      'Installation of ceiling fans with light kits',
-      'Assembly and mounting of ceiling fan units',
-      'Installation using existing, properly rated electrical connections and fan-support boxes'
-    ],
-    areasServed: [
-      'Burlingame',
-      'San Mateo',
-      'San Bruno',
-      'Millbrae',
-      'Foster City',
-      'Redwood City',
-      'South San Francisco',
-      'Nearby Peninsula communities'
-    ],
-    faqs: [
-      { q: 'How much does ceiling fan installation cost?', a: 'The cost depends on the type of fan, existing mounting box, ceiling height and installation requirements. Contact us for a quote.' },
-      { q: 'Can you replace my existing ceiling fan?', a: 'Yes. We can remove an existing ceiling fan and install a replacement when the existing electrical connections and mounting support are suitable.' },
-      { q: 'Can you install a ceiling fan where there is currently only a light fixture?', a: 'It depends on the existing electrical box and ceiling support. A standard light fixture box may not be rated to support a ceiling fan. The mounting support and wiring must be evaluated before installation.' },
-      { q: 'Do you install ceiling fans with lights?', a: 'Yes. We can assemble and install compatible ceiling fan and light-kit combinations.' },
-      { q: 'Do you provide ceiling fan installation in Burlingame and San Mateo?', a: 'Yes. We serve Burlingame, San Mateo and nearby Bay Area communities.' }
-    ]
-  },
-  'smart-home-installation-san-mateo': {
-    title: 'Smart Home Device Installation in San Mateo',
-    description: 'Professional smart home installation in San Mateo. We set up smart thermostats, video doorbells, smart locks, cameras, and more. Contact Nar Technique for a quote.',
-    content: 'Looking for reliable smart home installation in San Mateo? Nar Technique helps homeowners set up and configure a wide range of smart home devices — from smart thermostats and video doorbells to smart locks and security cameras. We handle the physical installation, app setup, and basic network configuration so your devices work from day one.',
-    servicesList: [
-      'Smart thermostat installation (Nest, Ecobee, Honeywell, and others)',
-      'Video doorbell installation (Ring, Nest Hello, Arlo, and others)',
-      'Smart lock installation and configuration',
-      'Indoor and outdoor security camera installation',
-      'Smart light switch and dimmer installation',
-      'Smart plug and outlet installation',
-      'Basic Wi-Fi and network troubleshooting for smart devices',
-      'App setup and device pairing'
-    ],
-    areasServed: [
-      'San Mateo',
-      'Burlingame',
-      'San Bruno',
-      'Millbrae',
-      'Foster City',
-      'Redwood City',
-      'South San Francisco',
-      'Nearby Peninsula communities'
-    ],
-    faqs: [
-      { q: 'What smart home devices do you install?', a: 'We install smart thermostats, video doorbells, smart locks, indoor and outdoor security cameras, smart light switches, and smart plugs from most major brands.' },
-      { q: 'Do I need to buy the device first?', a: 'Yes. We ask that you purchase the device you want, and we handle the professional installation and configuration.' },
-      { q: 'Can you help set up the app and connect the device to Wi-Fi?', a: 'Yes. Basic app setup, device pairing, and Wi-Fi connection are included as part of the installation.' },
-      { q: 'Do you install smart thermostats if my current wiring does not have a C-wire?', a: 'Many modern smart thermostats can operate without a C-wire or include an adapter. We will assess your existing wiring before installation.' },
-      { q: 'How much does smart home installation cost?', a: 'The cost depends on the type and number of devices and installation requirements. Contact us for a quote.' }
-    ]
-  },
-  'garbage-disposal-installation-burlingame': {
-    title: 'Garbage Disposal Installation & Replacement in Burlingame and San Mateo',
-    description: 'Need a garbage disposal installed or replaced? Nar Technique offers garbage disposal installation services in Burlingame, San Mateo and nearby Bay Area communities.',
-    content: 'Need a new garbage disposal for your kitchen sink? Nar Technique provides garbage disposal installation and replacement services in Burlingame, San Mateo and surrounding Bay Area communities. Whether your existing disposal has stopped working or you are upgrading your kitchen with a new unit, we can help with the installation. We work with common residential garbage disposal units and help ensure that the installation is properly fitted to your existing sink and plumbing connections. You may need a replacement if your disposal is leaking, the motor hums but the unit does not operate properly, the unit frequently jams, you notice persistent unpleasant odors, or you are remodeling your kitchen. Some problems can be resolved without replacing the unit — we can assess the installation and discuss the appropriate solution.',
-    servicesList: [
-      'New garbage disposal installation',
-      'Replacement of existing garbage disposals',
-      'Removal of old disposal units',
-      'Reconnection of compatible drain connections',
-      'Inspection of existing mounting assemblies',
-      'Checking for leaks after installation'
-    ],
-    areasServed: [
-      'Burlingame',
-      'San Mateo',
-      'Millbrae',
-      'San Bruno',
-      'Foster City',
-      'Redwood City',
-      'South San Francisco',
-      'Nearby Bay Area communities'
-    ],
-    faqs: [
-      { q: 'How much does garbage disposal installation cost?', a: 'Pricing depends on whether this is a new installation or a replacement, the disposal model and the condition of the existing plumbing and mounting assembly. Contact us for a quote.' },
-      { q: 'Can you replace my old garbage disposal?', a: 'Yes. We can remove an existing unit and install a compatible replacement.' },
-      { q: 'Do I need to purchase the garbage disposal myself?', a: 'You can provide the unit you want installed. Please share its make and model when requesting a quote.' },
-      { q: 'How long does installation take?', a: 'Many straightforward replacement jobs can be completed in one visit. Additional plumbing or electrical work may require more time.' },
-      { q: 'Can you install a garbage disposal in a new kitchen sink?', a: 'Yes, provided the sink, mounting assembly, drain configuration and electrical supply are compatible.' }
-    ]
-  },
-  'appliance-installation-burlingame': {
-    title: 'Professional Appliance Installation in Burlingame & San Mateo',
-    description: 'Looking for appliance installation in Burlingame or San Mateo? Nar Technique provides washer, dryer, dishwasher, microwave and other residential appliance installation services.',
-    content: 'Need help installing a new home appliance? Nar Technique provides residential appliance installation services in Burlingame, San Mateo and surrounding Bay Area communities. From kitchen appliances to laundry equipment, we help homeowners install and replace appliances with care and attention to detail. We assess the installation area, appliance dimensions and existing connections to help ensure a proper fit. Depending on the appliance and installation conditions, the job may involve removing the existing appliance, positioning and leveling the new unit, connecting compatible water supply and drain lines, connecting approved electrical connections, checking accessible connections for leaks, and testing basic appliance operation. Gas connections, new electrical circuits, permit-required work and other specialized installations must be handled by appropriately licensed professionals where required.',
-    servicesList: [
-      'Dishwasher installation and replacement',
-      'Washing machine installation',
-      'Dryer installation',
-      'Over-the-range microwave installation',
-      'Range hood installation',
-      'Refrigerator installation and positioning',
-      'Other compatible residential appliance installations'
-    ],
-    areasServed: [
-      'Burlingame',
-      'San Mateo',
-      'San Bruno',
-      'Millbrae',
-      'Foster City',
-      'Redwood City',
-      'South San Francisco',
-      'Nearby Peninsula communities'
-    ],
-    faqs: [
-      { q: 'Do you install dishwashers?', a: 'Yes. We provide residential dishwasher installation and replacement when the existing connections and installation conditions are suitable.' },
-      { q: 'Can you install an over-the-range microwave?', a: 'Yes. We install compatible over-the-range microwaves. Cabinet dimensions, mounting requirements and required clearances must be checked before installation.' },
-      { q: 'Do you install washers and dryers?', a: 'Yes. We provide installation of compatible residential laundry appliances. Electrical, plumbing and venting requirements are assessed before installation.' },
-      { q: 'Do you remove old appliances?', a: 'Removal can be included depending on the appliance, access and project requirements. Please mention this when requesting a quote.' },
-      { q: 'How much does appliance installation cost?', a: 'Pricing depends on the appliance type, installation complexity, existing connections and whether removal of the old appliance is needed. Contact us for a project-specific quote.' }
-    ]
-  }
 };
 
-export function generateStaticParams() {
-  return Object.keys(servicePages).map((slug) => ({
-    slug: slug,
-  }));
-}
-
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-  const resolvedParams = await params;
-  const page = servicePages[resolvedParams.slug];
-  if (!page) return { title: 'Not Found' };
-
-  return {
-    title: `${page.title} | Nar Technique`,
-    description: page.description,
-  };
-}
-
-export default async function ServicePage({ params }: { params: Promise<{ slug: string }> }) {
-  const resolvedParams = await params;
-  const page = servicePages[resolvedParams.slug];
-
-  if (!page) {
-    notFound();
+// Function to fetch content
+async function getContent() {
+  try {
+    const filePath = path.join(process.cwd(), 'src', 'data', 'content.json');
+    const data = await fs.readFile(filePath, 'utf8');
+    return JSON.parse(data);
+  } catch (error) {
+    console.error('Failed to load content.json', error);
+    return { gallery: [], reviews: [] };
   }
+}
+
+export default async function Home() {
+  const content = await getContent();
 
   return (
-    <div className={styles.page}>
-      <div className={styles.header}>
-        <h1 className={styles.title}>{page.title}</h1>
-        <p className={styles.subtitle}>{page.description}</p>
-      </div>
+    <>
+      {/* Sticky Mobile Call CTA */}
+      <a href="tel:6507409472" className={styles.stickyMobileCall}>
+        Call Now: (650) 740-9472
+      </a>
 
-      <div className={styles.content}>
-        <div className={styles.mainContent}>
-          <h2>Expert Service You Can Trust</h2>
-          <p>{page.content}</p>
-
-          {page.servicesList && (
-            <div className={styles.servicesList}>
-              <h2>Our Services</h2>
-              <ul>
-                {page.servicesList.map((item, index) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {page.areasServed && (
-            <div className={styles.areasSection}>
-              <h2>Areas We Serve</h2>
-              <ul>
-                {page.areasServed.map((area, index) => (
-                  <li key={index}>{area}</li>
-                ))}
-              </ul>
-            </div>
-          )}
-
-          {!page.servicesList && (
-            <p>At Nar Technique, we understand that inviting someone into your home requires trust. That&apos;s why we prioritize cleanliness, clear communication, and impeccable attention to detail on every single job. We serve San Mateo and the broader Bay Area with premium handyman services designed to make your life easier.</p>
-          )}
-
-          <div className={styles.faqSection}>
-            <h2>Frequently Asked Questions</h2>
-            {page.faqs.map((faq, index) => (
-              <div key={index} className={styles.faqItem}>
-                <h3>{faq.q}</h3>
-                <p>{faq.a}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className={styles.sidebar}>
-          <h3>Ready to book your {page.title.split(' in ')[0].toLowerCase()}?</h3>
-          <p style={{ marginBottom: '1.5rem', color: 'var(--color-text-muted)' }}>
-            Contact us today for a free, no-obligation quote. We often have same-day or next-day availability!
+      {/* Hero Section */}
+      <section className={styles.hero}>
+        <div className={styles.heroContent}>
+          <h1 className={styles.heroTitle}>Professional Handyman & Installation Services in San Mateo & Bay Area</h1>
+          <p className={styles.heroSubtitle}>
+            Reliable, clean, and detail-focused handyman services specializing in TV mounting, appliance installation, lighting, faucet replacement, furniture assembly, and home repairs.
           </p>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <Button href="tel:6507409472" fullWidth>Call: (650) 740-9472</Button>
-            <Button href="sms:6507409472" variant="outline" fullWidth>Text Us Photos</Button>
+          <div className={styles.heroButtons}>
+            <Button href="tel:6507409472" size="large">Call Now</Button>
+            <Button href="tel:6507409472" variant="outline" size="large">Get Free Estimate</Button>
+            <Button href="sms:6507409472" variant="secondary" size="large">Text Photos for Quote</Button>
+          </div>
+          <div className={styles.trustIndicators}>
+            <div className={styles.trustItem}><span className={styles.trustIcon}>✓</span> 600+ Completed Jobs</div>
+            <div className={styles.trustItem}><span className={styles.trustIcon}>✓</span> 5-Star Rated</div>
+            <div className={styles.trustItem}><span className={styles.trustIcon}>✓</span> Same-Day Availability</div>
+            <div className={styles.trustItem}><span className={styles.trustIcon}>✓</span> Professional & Clean Work</div>
+          </div>
+          <div className={styles.reviewStrip}>
+            <span className={styles.reviewPart}>
+              <span className={styles.reviewStars} aria-hidden="true">★★★★★</span>
+              <span>5.0 on Thumbtack · 428 reviews ·</span>
+            </span>
+            <span className={styles.reviewPart}>
+              <span>600+ completed jobs</span>
+            </span>
           </div>
         </div>
-      </div>
-    </div>
+        <div className={styles.heroImageContainer}>
+          <Image
+            src="/hero_handyman_tv_clean.png"
+            alt="Handyman mounting a TV in a modern home"
+            fill
+            priority
+            sizes="100vw"
+          />
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section id="services" className={styles.section}>
+        <div className={styles.sectionHeader}>
+          <h2 className={styles.sectionTitle}>Our Services</h2>
+          <p className={styles.sectionSubtitle}>Expert installation and repair services for your home or business.</p>
+        </div>
+        <div className={styles.servicesGrid}>
+          <ServiceCard
+            title="TV Mounting"
+            description="Professional TV wall mounting with wire concealment. Safe, secure, and perfectly level."
+            icon="📺"
+            href="/services/tv-mounting-san-mateo"
+          />
+          <ServiceCard
+            title="Appliance Installation"
+            description="Expert installation for washers, dryers, dishwashers, and built-in microwaves."
+            icon="🔌"
+            href="/services/appliance-installation-san-mateo"
+          />
+          <ServiceCard
+            title="Faucet/Sink & Toilet Replacement"
+            description="Quick and clean replacement of bathroom and kitchen fixtures/Sinks without the plumbing premium."
+            icon="🚰"
+            href="/services/faucet-replacement-san-mateo"
+          />
+          <ServiceCard
+            title="Lighting & Ceiling Fans"
+            description="Safe installation of chandeliers, pendant lights, and ceiling fans."
+            icon="💡"
+            href="/services/light-fixture-installation-san-mateo"
+          />
+          <ServiceCard
+            title="Furniture Assembly"
+            description="Fast and correct assembly for IKEA, Wayfair, and custom furniture pieces."
+            icon="🪑"
+            href="/services/furniture-assembly-san-mateo"
+          />
+          <ServiceCard
+            title="Art & Mirror Installation"
+            description="Professional picture hanging, heavy mirror mounting, and perfectly leveled gallery walls."
+            icon="🖼️"
+            href="/services/art-installation-san-mateo"
+          />
+          <ServiceCard
+            title="Smart Home Setup"
+            description="Installation of smart thermostats, doorbells, cameras, and locks."
+            icon="🏠"
+            href="/services/smart-home-installation-san-mateo"
+          />
+          <ServiceCard
+            title="Water Treatment Systems"
+            description="Professional installation or replacement of under-sink water filters and RO units."
+            icon="💧"
+            href="/services/water-treatment-installation-san-mateo"
+          />
+          <ServiceCard
+            title="Window / Portable AC Install"
+            description="Secure, perfectly sealed, and leveled installation for window and portable air conditioning units."
+            icon="❄️"
+            href="/services/window-ac-installation-san-mateo"
+          />
+          <ServiceCard
+            title="Ceiling Fan Installation"
+            description="Professional ceiling fan installation and replacement in Burlingame, San Mateo and nearby Bay Area communities."
+            icon="🌀"
+            href="/services/ceiling-fan-installation-burlingame"
+          />
+          <ServiceCard
+            title="Garbage Disposal Installation"
+            description="New installation or replacement of garbage disposal units. Proper fit, secure connections, and leak checks."
+            icon="🔧"
+            href="/services/garbage-disposal-installation-burlingame"
+          />
+          <ServiceCard
+            title="Appliance Installation"
+            description="Dishwasher, washer, dryer, microwave and range hood installation in Burlingame, San Mateo and nearby communities."
+            icon="🏠"
+            href="/services/appliance-installation-burlingame"
+          />
+        </div>
+      </section>
+
+      {/* Why Choose Us */}
+      <section className={`${styles.section} ${styles.sectionAlt}`}>
+        <div className={styles.sectionHeader}>
+          <h2 className={styles.sectionTitle}>Why Choose Nar Technique</h2>
+          <p className={styles.sectionSubtitle}>We bring professional tech-industry standards to home services.</p>
+        </div>
+        <div className={styles.featuresGrid}>
+          <div className={styles.feature}>
+            <div className={styles.featureIcon}>✨</div>
+            <div>
+              <h3>Clean & Professional Work</h3>
+              <p>We wear shoe covers, lay down drop cloths, and leave your home cleaner than we found it.</p>
+            </div>
+          </div>
+          <div className={styles.feature}>
+            <div className={styles.featureIcon}>💬</div>
+            <div>
+              <h3>Clear Communication</h3>
+              <p>We respond quickly, show up when we say we will, and explain everything clearly.</p>
+            </div>
+          </div>
+          <div className={styles.feature}>
+            <div className={styles.featureIcon}>⏱️</div>
+            <div>
+              <h3>On-Time Service</h3>
+              <p>Your time is valuable. We pride ourselves on punctuality and efficient work.</p>
+            </div>
+          </div>
+          <div className={styles.feature}>
+            <div className={styles.featureIcon}>🔍</div>
+            <div>
+              <h3>Attention to Detail</h3>
+              <p>We don't cut corners. From level TVs to perfectly caulked fixtures, the details matter.</p>
+            </div>
+          </div>
+          <div className={styles.feature}>
+            <div className={styles.featureIcon}>💰</div>
+            <div>
+              <h3>Honest Pricing</h3>
+              <p>No hidden fees or surprise charges. We provide clear estimates before starting any work.</p>
+            </div>
+          </div>
+          <div className={styles.feature}>
+            <div className={styles.featureIcon}>🛠️</div>
+            <div>
+              <h3>Reliable Problem Solving</h3>
+              <p>If there's an unexpected issue, we have the technical skills to solve it correctly.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Gallery Section */}
+      <section id="gallery" className={styles.section}>
+        <div className={styles.sectionHeader}>
+          <h2 className={styles.sectionTitle}>Recent Projects</h2>
+          <p className={styles.sectionSubtitle}>See the quality of our workmanship firsthand.</p>
+        </div>
+        <div className={styles.galleryGrid}>
+          {content.gallery.slice(0, 6).map((img: any) => (
+            <div key={img.id} className={styles.galleryItem}>
+              <Image src={img.src} alt={img.alt} fill />
+            </div>
+          ))}
+        </div>
+        <div className={styles.readMoreContainer}>
+          <Button href="/gallery" variant="outline">View All Projects</Button>
+        </div>
+      </section>
+
+      {/* Reviews Section */}
+      <section id="reviews" className={`${styles.section} ${styles.sectionAlt}`}>
+        <div className={styles.sectionHeader}>
+          <h2 className={styles.sectionTitle}>Customer Reviews</h2>
+          <p className={styles.sectionSubtitle}>Don't just take our word for it.</p>
+        </div>
+        <div className={styles.reviewsGrid}>
+          {(() => {
+            const uniqueServiceReviews: any[] = [];
+            const seenServices = new Set();
+
+            // First pass: add one review per service to showcase variety
+            for (const review of content.reviews) {
+              if (!seenServices.has(review.service) && uniqueServiceReviews.length < 6) {
+                uniqueServiceReviews.push(review);
+                seenServices.add(review.service);
+              }
+            }
+
+            // Second pass: if we have less than 6, fill the rest with remaining reviews
+            if (uniqueServiceReviews.length < 6) {
+              for (const review of content.reviews) {
+                if (!uniqueServiceReviews.includes(review) && uniqueServiceReviews.length < 6) {
+                  uniqueServiceReviews.push(review);
+                }
+              }
+            }
+
+            return uniqueServiceReviews.map((review: any) => (
+              <TestimonialCard
+                key={review.id}
+                name={review.name}
+                service={review.service}
+                text={review.text}
+                rating={review.rating}
+              />
+            ));
+          })()}
+        </div>
+        <div className={styles.readMoreContainer}>
+          <Button href="/reviews" variant="outline">Read All Reviews</Button>
+        </div>
+      </section>
+
+      {/* Service Area */}
+      <section className={styles.section}>
+        <div className={styles.sectionHeader}>
+          <h2 className={styles.sectionTitle}>Areas We Serve</h2>
+          <p className={styles.sectionSubtitle}>Providing professional handyman services throughout the Peninsula and Bay Area.</p>
+        </div>
+        <MapWrapper />
+      </section>
+
+      {/* Final CTA */}
+      <section className={styles.ctaSection}>
+        <h2 className={styles.ctaTitle}>Need a Reliable Handyman?</h2>
+        <p className={styles.ctaSubtitle}>Call or text today for fast, professional service. We are ready to help with your next project.</p>
+        <div className={styles.ctaButtons}>
+          <Button href="tel:6507409472" variant="outline" size="large" style={{ borderColor: 'white', color: 'white' }}>Call Now</Button>
+          <Button href="sms:6507409472" size="large">Request Estimate</Button>
+        </div>
+      </section>
+    </>
   );
 }

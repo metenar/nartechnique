@@ -20,6 +20,19 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://www.nartechnique.com'),
   title: "Nar Technique | Bay Area Handyman Services",
   description: "Expert TV mounting, appliance installation, and handyman services in San Mateo & the Bay Area.",
+  openGraph: {
+    title: "Nar Technique | Bay Area Handyman Services",
+    description: "Expert TV mounting, appliance installation, and handyman services in San Mateo & the Bay Area.",
+    url: "https://www.nartechnique.com/",
+    type: "website",
+    images: [{ url: "/hero_handyman_tv_clean.png" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Nar Technique | Bay Area Handyman Services",
+    description: "Expert TV mounting, appliance installation, and handyman services in San Mateo & the Bay Area.",
+    images: ["/hero_handyman_tv_clean.png"],
+  },
 };
 
 const jsonLd = {
@@ -32,10 +45,25 @@ const jsonLd = {
   "priceRange": "$$",
   "address": {
     "@type": "PostalAddress",
-    "addressLocality": "San Mateo",
+    "addressLocality": "Burlingame",
     "addressRegion": "CA",
     "addressCountry": "US"
-  }
+  },
+  "areaServed": ["Burlingame", "San Mateo", "San Bruno", "Millbrae", "Foster City", "Belmont", "San Carlos", "Redwood City", "Daly City", "San Francisco"],
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "08:30",
+      "closes": "19:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "09:30",
+      "closes": "18:00"
+    }
+  ]
 };
 
 export default function RootLayout({

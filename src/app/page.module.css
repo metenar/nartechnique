@@ -56,6 +56,29 @@
   font-size: 1.25rem;
 }
 
+.reviewStrip {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1.25rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  flex-wrap: wrap;
+}
+
+.reviewStars {
+  color: #f5a623;
+  font-size: 1.1rem;
+  letter-spacing: 0.15rem;
+}
+
+.reviewPart {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  white-space: nowrap;
+}
+
 .heroImageContainer {
   flex: 1;
   position: relative;
@@ -107,18 +130,19 @@
 
 /* Center last item on 3-column grid (Desktops) */
 @media (min-width: 1072px) {
-  .servicesGrid > *:last-child:nth-child(3n + 1) {
+  .servicesGrid>*:last-child:nth-child(3n + 1) {
     grid-column: 2;
   }
 }
 
 /* Center last item on 2-column grid (Tablets) */
 @media (min-width: 702px) and (max-width: 1071px) {
-  .servicesGrid > *:last-child:nth-child(odd) {
+  .servicesGrid>*:last-child:nth-child(odd) {
     grid-column: 1 / -1;
     justify-self: center;
     width: 100%;
-    max-width: 400px; /* Matches the approximate width of a single column */
+    max-width: 400px;
+    /* Matches the approximate width of a single column */
   }
 }
 
@@ -295,7 +319,7 @@
   font-weight: 700;
   font-size: 1.125rem;
   z-index: 1000;
-  box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width: 768px) {
@@ -304,7 +328,7 @@
     padding-top: 4rem;
     text-align: center;
   }
-  
+
   .heroTitle {
     font-size: 2.5rem;
   }
@@ -317,6 +341,10 @@
     justify-content: center;
   }
 
+  .reviewStrip {
+    justify-content: center;
+  }
+
   .serviceAreaContent {
     flex-direction: column;
   }
@@ -326,6 +354,7 @@
   }
 
   .footer {
-    padding-bottom: 5rem; /* Space for sticky button */
+    padding-bottom: 5rem;
+    /* Space for sticky button */
   }
 }
