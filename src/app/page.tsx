@@ -50,10 +50,19 @@ export default async function Home() {
             <Button href="sms:6507409472" variant="secondary" size="large">Text Photos for Quote</Button>
           </div>
           <div className={styles.trustIndicators}>
-            <div className={styles.trustItem}><span className={styles.trustIcon}>✓</span> 500+ Completed Jobs</div>
+            <div className={styles.trustItem}><span className={styles.trustIcon}>✓</span> 600+ Completed Jobs</div>
             <div className={styles.trustItem}><span className={styles.trustIcon}>✓</span> 5-Star Rated</div>
             <div className={styles.trustItem}><span className={styles.trustIcon}>✓</span> Same-Day Availability</div>
             <div className={styles.trustItem}><span className={styles.trustIcon}>✓</span> Professional & Clean Work</div>
+          </div>
+          <div className={styles.reviewStrip}>
+            <span className={styles.reviewPart}>
+              <span className={styles.reviewStars} aria-hidden="true">★★★★★</span>
+              <span>5.0 on Thumbtack · 428 reviews ·</span>
+            </span>
+            <span className={styles.reviewPart}>
+              <span>600+ completed jobs</span>
+            </span>
           </div>
         </div>
         <div className={styles.heroImageContainer}>
