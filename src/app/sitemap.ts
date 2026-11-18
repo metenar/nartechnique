@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'garbage-disposal-installation-san-mateo',
     'light-fixture-installation-san-mateo',
     'toilet-installation-san-mateo',
+    'appliance-installation-san-mateo',
     'furniture-assembly-san-mateo',
     'art-installation-san-mateo',
     'water-treatment-installation-san-mateo',
