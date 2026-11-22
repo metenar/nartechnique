@@ -77,9 +77,18 @@ export default function RootLayout({
         <link rel="icon" href="/nar-favicon.svg?v=6" type="image/svg+xml" />
         <link rel="shortcut icon" href="/nar-favicon.svg?v=6" type="image/svg+xml" />
         <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+  />
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-T4KSN0CHBP"
+  />
+  <script
+    dangerouslySetInnerHTML={{
+      __html: `window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-T4KSN0CHBP');`,
+    }}
+  />
       </head>
       <body>
         <AnalyticsTracker />
