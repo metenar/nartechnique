@@ -96,7 +96,7 @@ export default async function Home() {
             href="/services/appliance-installation-san-mateo"
           />
           <ServiceCard
-            title="Faucet Replacement "
+            title="Faucet Replacement"
             description="Quick and clean replacement of bathroom and kitchen fixtures without the plumbing premium."
             icon="🚰"
             href="/services/faucet-replacement-san-mateo"
