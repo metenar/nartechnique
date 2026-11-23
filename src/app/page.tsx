@@ -96,14 +96,14 @@ export default async function Home() {
             href="/services/appliance-installation-san-mateo"
           />
           <ServiceCard
-            title="Faucet/Sink & Toilet Replacement"
-            description="Quick and clean replacement of bathroom and kitchen fixtures/Sinks without the plumbing premium."
+            title="Faucet Replacement "
+            description="Quick and clean replacement of bathroom and kitchen fixtures without the plumbing premium."
             icon="🚰"
             href="/services/faucet-replacement-san-mateo"
           />
           <ServiceCard
-            title="Lighting & Ceiling Fans"
-            description="Safe installation of chandeliers, pendant lights, and ceiling fans."
+            title="Light Fixture Installation"
+            description="Safe installation of chandeliers, pendant lights. "
             icon="💡"
             href="/services/light-fixture-installation-san-mateo"
           />
@@ -141,19 +141,19 @@ export default async function Home() {
             title="Ceiling Fan Installation"
             description="Professional ceiling fan installation and replacement in Burlingame, San Mateo and nearby Bay Area communities."
             icon="🌀"
-            href="/services/ceiling-fan-installation-burlingame"
+            href="/services/ceiling-fan-installation-san-mateo"
           />
           <ServiceCard
             title="Garbage Disposal Installation"
             description="New installation or replacement of garbage disposal units. Proper fit, secure connections, and leak checks."
             icon="🔧"
-            href="/services/garbage-disposal-installation-burlingame"
+            href="/services/garbage-disposal-installation-san-mateo"
           />
           <ServiceCard
-            title="Appliance Installation"
-            description="Dishwasher, washer, dryer, microwave and range hood installation in Burlingame, San Mateo and nearby communities."
-            icon="🏠"
-            href="/services/appliance-installation-burlingame"
+            title="Toilet Installation & Replacement"
+            description="Professional toilet replacement in San Mateo and nearby communities. Clean, reliable, and perfectly sealed."
+            icon="🚽"
+            href="/services/toilet-installation-san-mateo"
           />
         </div>
       </section>
