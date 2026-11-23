@@ -7,6 +7,7 @@ import MapWrapper from "@/components/ServiceMap/MapWrapper";
 import { Button } from "@/components/Button/Button";
 import { ServiceCard } from "@/components/ServiceCard/ServiceCard";
 import { TestimonialCard } from "@/components/TestimonialCard/TestimonialCard";
+import QuoteForm from "@/components/QuoteForm/QuoteForm";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -279,6 +280,15 @@ export default async function Home() {
           <p className={styles.sectionSubtitle}>Providing professional handyman services throughout the Peninsula and Bay Area.</p>
         </div>
         <MapWrapper />
+      </section>
+
+      {/* Quote Form */}
+      <section id="quote" className={`${styles.section} ${styles.sectionAlt}`}>
+        <div className={styles.sectionHeader}>
+          <h2 className={styles.sectionTitle}>Request a Quote</h2>
+          <p className={styles.sectionSubtitle}>Tell us about your project — we reply the same business day, usually within a few hours during opening hours.</p>
+        </div>
+        <QuoteForm />
       </section>
 
       {/* Final CTA */}
