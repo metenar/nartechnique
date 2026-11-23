@@ -11,7 +11,9 @@ const servicePages: Record<string, { title: string, description: string, content
     content: 'Are you looking for reliable TV mounting services in San Mateo? Nar Technique specializes in professional, clean, and perfectly level TV installations. Whether you need a standard drywall mount, fireplace mounting, or complex wire concealment, we have the technical expertise to get the job done right the first time.',
     faqs: [
       { q: 'Do you provide the TV mount?', a: 'We can provide high-quality tilting or full-motion mounts for an additional fee, or we can use a mount you have already purchased.' },
-      { q: 'Can you hide the wires inside the wall?', a: 'Yes, we offer professional wire concealment services to give your setup a clean, floating appearance.' }
+      { q: 'Can you hide the wires inside the wall?', a: 'Yes, we offer professional wire concealment services to give your setup a clean, floating appearance.' },
+      { q: 'How much does TV mounting cost?', a: 'TV mounting starts at $190. TV mounting with in-wall cable concealment starts at $250.' }
+
     ]
   },
   'ceiling-fan-installation-san-mateo': {
@@ -20,7 +22,8 @@ const servicePages: Record<string, { title: string, description: string, content
     content: 'Upgrade your home\'s comfort and energy efficiency with a new ceiling fan. Nar Technique offers professional ceiling fan installation in San Mateo. We ensure safe wiring, secure mounting to prevent wobbling, and clean installation.',
     faqs: [
       { q: 'Can you install a fan where there is no existing light?', a: 'Yes, but it requires running new wiring and installing a fan-rated junction box, which takes more time than a simple replacement.' },
-      { q: 'Do you assemble the fan?', a: 'Yes, full assembly of the new fan is included in our installation service.' }
+      { q: 'Do you assemble the fan?', a: 'Yes, full assembly of the new fan is included in our installation service.' },
+      { q: 'How much does ceiling fan installation cost?', a: 'Ceiling fan installation starts at $190, final price depends on ceiling height, wiring condition, and fan weight.'}
     ]
   },
   'faucet-replacement-san-mateo': {
@@ -29,7 +32,8 @@ const servicePages: Record<string, { title: string, description: string, content
     content: 'A leaky or outdated faucet can ruin the look of your kitchen or bathroom. We provide fast, reliable, and clean faucet/Sink replacement services in San Mateo. We handle the removal of the old fixture, clean the area, and perfectly install the new one without the premium plumbing costs.',
     faqs: [
       { q: 'Do I need to buy the faucet first?', a: 'Yes, we ask that you purchase the faucet you want, and we will handle the professional installation.' },
-      { q: 'What if my shut-off valves are stuck?', a: 'We have the tools and experience to safely handle tricky plumbing situations under the sink.' }
+      { q: 'What if my shut-off valves are stuck?', a: 'We have the tools and experience to safely handle tricky plumbing situations under the sink.' },
+      { q: 'How much does faucet replacement cost in San Mateo?', a: 'Faucet replacement in San Mateo starts at $190, final price depends on faucet type and plumbing condition.'}
     ]
   },
   'garbage-disposal-installation-san-mateo': {
@@ -38,7 +42,8 @@ const servicePages: Record<string, { title: string, description: string, content
     content: 'Is your garbage disposal jammed, leaking, or making a terrible noise? Nar Technique provides professional garbage disposal replacement in San Mateo. We\'ll swap out your old unit with a new one, ensuring all connections are watertight and secure.',
     faqs: [
       { q: 'Do you haul away the old disposal?', a: 'Yes, we can haul away and dispose of the old unit for your convenience.' },
-      { q: 'How long does installation take?', a: 'A standard garbage disposal replacement typically takes about 1-2 hours.' }
+      { q: 'How long does installation take?', a: 'A standard garbage disposal replacement typically takes about 1-2 hours.' },
+      { q: 'How much does garbage disposal installation cost?', a: 'Garbage disposal replacement starts at $150. The final price depends on the disposal model and the condition of the existing plumbing and mounting assembly.' }
     ]
   },
   'light-fixture-installation-san-mateo': {
@@ -47,7 +52,8 @@ const servicePages: Record<string, { title: string, description: string, content
     content: 'Brighten up your home with our professional light fixture installation services in San Mateo. From elegant dining room chandeliers to modern kitchen pendants, we ensure safe and secure installation of all your lighting fixtures.',
     faqs: [
       { q: 'Can you install heavy chandeliers?', a: 'Yes, but very heavy fixtures may require us to install additional support in the ceiling.' },
-      { q: 'Do you change light switches too?', a: 'Yes, we can upgrade your switches to dimmers or smart switches as part of the service.' }
+      { q: 'Do you change light switches too?', a: 'Yes, we can upgrade your switches to dimmers or smart switches as part of the service.' },
+      { q: 'How much does light fixture installation cost?', a: 'Light fixture installation in San Mateo starts at $190, final price depends on fixture type, ceiling height, and existing wiring.' }
     ]
   },
   'toilet-installation-san-mateo': {
@@ -56,7 +62,8 @@ const servicePages: Record<string, { title: string, description: string, content
     content: 'Upgrade your bathroom with a new toilet. We provide professional toilet installation and replacement in San Mateo. We carefully remove the old unit, ensure the flange is in good condition, and install the new toilet with a perfect wax ring seal to prevent any future leaks.',
     faqs: [
       { q: 'Do you dispose of the old toilet?', a: 'Yes, we offer haul-away services for your old toilet.' },
-      { q: 'What if the floor underneath is damaged?', a: 'If we discover water damage to the subfloor, we will discuss the best repair options with you before proceeding.' }
+      { q: 'What if the floor underneath is damaged?', a: 'If we discover water damage to the subfloor, we will discuss the best repair options with you before proceeding.' },
+       { q: 'How much does toilet replacement cost?', a: 'Toilet replacement in San Mateo starts at $230, final price depends on toilet model and plumbing condition.'}
     ]
   },
   'appliance-installation-san-mateo': {
@@ -65,7 +72,9 @@ const servicePages: Record<string, { title: string, description: string, content
     content: 'Just bought new appliances? Nar Technique provides expert appliance installation in San Mateo. We install dishwashers, washers, dryers, and over-the-range microwaves, ensuring all water, drain, and electrical connections are perfectly secure.',
     faqs: [
       { q: 'Do you install built-in appliances?', a: 'Yes, we install built-in microwaves, dishwashers, and wall ovens.' },
-      { q: 'Do you pick up the appliance from the store?', a: 'No, we require the appliance to be delivered to your home prior to our installation appointment.' }
+      { q: 'Do you pick up the appliance from the store?', a: 'No, we require the appliance to be delivered to your home prior to our installation appointment.' },
+      { q: 'How much does appliance installation cost?', a: 'Dishwasher installation starts at $190. Washer & dryer installation (pair) starts at $350. Over-the-range microwave installation starts at $210.' }
+
     ]
   },
   'furniture-assembly-san-mateo': {
@@ -74,7 +83,9 @@ const servicePages: Record<string, { title: string, description: string, content
     content: 'Save yourself the weekend headache. We offer professional furniture assembly in San Mateo. Whether it\'s a complex IKEA wardrobe, a Wayfair bed frame, or a heavy desk, we assemble it quickly, correctly, and sturdily.',
     faqs: [
       { q: 'Do you anchor furniture to the wall?', a: 'Yes, for safety, especially with children in the home, we highly recommend and provide wall anchoring for dressers and bookshelves.' },
-      { q: 'Do you clean up the packaging?', a: 'We break down all cardboard boxes and organize the trash, leaving your space clean.' }
+      { q: 'Do you clean up the packaging?', a: 'We break down all cardboard boxes and organize the trash, leaving your space clean.' },
+      { q: 'How much does furniture assembly cost?', a: 'Furniture assembly starts at $80/hour. Contact us for an estimate based on the pieces you need assembled.' }
+
     ]
   },
   'art-installation-san-mateo': {
@@ -83,7 +94,8 @@ const servicePages: Record<string, { title: string, description: string, content
     content: 'Hanging heavy mirrors or creating the perfect gallery wall requires precision and the right hardware. We offer professional art and mirror installation services in San Mateo. Whether you need to securely anchor a massive mirror or perfectly align a series of frames, we have the tools and expertise to ensure your pieces are safe, level, and beautifully displayed.',
     faqs: [
       { q: 'Can you hang heavy mirrors on drywall?', a: 'Yes, we use specialized heavy-duty anchors designed specifically to hold substantial weight safely in drywall, even without a stud.' },
-      { q: 'Do you design gallery walls?', a: 'While we don\'t provide interior design services, if you lay out the arrangement you want, we will measure, level, and hang them perfectly to your specifications.' }
+      { q: 'Do you design gallery walls?', a: 'While we don\'t provide interior design services, if you lay out the arrangement you want, we will measure, level, and hang them perfectly to your specifications.' },
+      { q: 'How much does art installation cost?', a: 'Art installation starts at $90 per hour, final price depends on size, weight, and wall type.'}
     ]
   },
   'water-treatment-installation-san-mateo': {
@@ -92,7 +104,9 @@ const servicePages: Record<string, { title: string, description: string, content
     content: 'Ensure your home has access to pure, clean drinking water with professional water treatment system installation in San Mateo. We specialize in cleanly installing under-sink Reverse Osmosis (RO) units, simple inline water filters, and replacing old filtration systems with zero leaks.',
     faqs: [
       { q: 'Do you install Reverse Osmosis (RO) systems?', a: 'Yes, we professionally install under-sink RO systems, including safely drilling holes in countertops for the dedicated drinking water faucet if necessary.' },
-      { q: 'Can you replace my old water filter system?', a: 'Absolutely. We can cleanly remove your old system, dispose of it, and install a brand new modern water treatment system.' }
+      { q: 'Can you replace my old water filter system?', a: 'Absolutely. We can cleanly remove your old system, dispose of it, and install a brand new modern water treatment system.' },
+      { q: 'How much does water filter installation cost?', a: 'Water filter installation starts at $190. If the countertop needs to be drilled for the faucet, installation starts at $220.' }
+
     ]
   },
   'window-ac-installation-san-mateo': {
@@ -101,7 +115,8 @@ const servicePages: Record<string, { title: string, description: string, content
     content: 'Stay cool during the summer heat with our professional window and portable air conditioning installation services. Installing an AC unit correctly is crucial for both efficiency and safety. We ensure your window unit is securely mounted, perfectly leveled for proper drainage, and tightly sealed to prevent drafts and bugs. For portable units, we correctly vent the exhaust securely through your window.',
     faqs: [
       { q: 'Do you provide the AC unit?', a: 'No, you provide the unit, and we handle the professional installation and sealing.' },
-      { q: 'Can you install an AC in a sliding window?', a: 'Yes, we can install AC units in both traditional double-hung windows and horizontal sliding windows, though they require different installation techniques and sealing materials.' }
+      { q: 'Can you install an AC in a sliding window?', a: 'Yes, we can install AC units in both traditional double-hung windows and horizontal sliding windows, though they require different installation techniques and sealing materials.' },
+      { q: 'How much does window AC installation cost?', a: 'Window AC installation starts at $230, final price depends on unit size, window type, and installation complexity.' }
     ]
   },
   'ceiling-fan-installation-burlingame': {
@@ -127,7 +142,7 @@ const servicePages: Record<string, { title: string, description: string, content
       'Nearby Peninsula communities'
     ],
     faqs: [
-      { q: 'How much does ceiling fan installation cost?', a: 'The cost depends on the type of fan, existing mounting box, ceiling height and installation requirements. Contact us for a quote.' },
+      { q: 'How much does ceiling fan installation cost?', a: 'Ceiling fan installation starts at $190, final price depends on ceiling height, wiring condition, and fan weight.'},
       { q: 'Can you replace my existing ceiling fan?', a: 'Yes. We can remove an existing ceiling fan and install a replacement when the existing electrical connections and mounting support are suitable.' },
       { q: 'Can you install a ceiling fan where there is currently only a light fixture?', a: 'It depends on the existing electrical box and ceiling support. A standard light fixture box may not be rated to support a ceiling fan. The mounting support and wiring must be evaluated before installation.' },
       { q: 'Do you install ceiling fans with lights?', a: 'Yes. We can assemble and install compatible ceiling fan and light-kit combinations.' },
@@ -189,7 +204,7 @@ const servicePages: Record<string, { title: string, description: string, content
       'Nearby Bay Area communities'
     ],
     faqs: [
-      { q: 'How much does garbage disposal installation cost?', a: 'Pricing depends on whether this is a new installation or a replacement, the disposal model and the condition of the existing plumbing and mounting assembly. Contact us for a quote.' },
+      { q: 'How much does garbage disposal installation cost?', a: 'Garbage disposal replacement starts at $150. The final price depends on the disposal model and the condition of the existing plumbing and mounting assembly.' },
       { q: 'Can you replace my old garbage disposal?', a: 'Yes. We can remove an existing unit and install a compatible replacement.' },
       { q: 'Do I need to purchase the garbage disposal myself?', a: 'You can provide the unit you want installed. Please share its make and model when requesting a quote.' },
       { q: 'How long does installation take?', a: 'Many straightforward replacement jobs can be completed in one visit. Additional plumbing or electrical work may require more time.' },
@@ -224,7 +239,8 @@ const servicePages: Record<string, { title: string, description: string, content
       { q: 'Can you install an over-the-range microwave?', a: 'Yes. We install compatible over-the-range microwaves. Cabinet dimensions, mounting requirements and required clearances must be checked before installation.' },
       { q: 'Do you install washers and dryers?', a: 'Yes. We provide installation of compatible residential laundry appliances. Electrical, plumbing and venting requirements are assessed before installation.' },
       { q: 'Do you remove old appliances?', a: 'Removal can be included depending on the appliance, access and project requirements. Please mention this when requesting a quote.' },
-      { q: 'How much does appliance installation cost?', a: 'Pricing depends on the appliance type, installation complexity, existing connections and whether removal of the old appliance is needed. Contact us for a project-specific quote.' }
+      { q: 'How much does appliance installation cost?', a: 'Dishwasher installation starts at $190. Washer & dryer installation (pair) starts at $350. Over-the-range microwave installation starts at $210. Final pricing depends on installation complexity and existing connections.' }
+
     ]
   }
 };
